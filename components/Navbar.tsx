@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Coffee, Menu, X, Egg, ChevronRight } from 'lucide-react';
+import { Coffee, Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RoosterLogo from './RoosterLogo';
 
@@ -38,8 +38,8 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        return () => window.removeEventListener('scroll', handleResize);
+    }, []); // Removi o resize listener, já que o evento resize estava sendo referenciado na função de scroll
 
     useEffect(() => {
         if (isOpen) {
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
     }, [isOpen]);
 
     const navLinks = [
-        { name: 'Apresentação', href: '#sobre' }, // AQUI ESTÁ A MUDANÇA
+        { name: 'Apresentação', href: '#sobre' },
         { name: 'Menu (Skills)', href: '#skills' },
         { name: 'Safra (Projetos)', href: '#projetos' },
         { name: 'O Caixa', href: '#contato' },
@@ -161,15 +161,15 @@ const Navbar: React.FC = () => {
                 </div>
             </motion.nav>
 
-            {/* MOBILE MENU FULL SCREEN (Mantido igual porque tá show) */}
+            {/* MOBILE MENU FULL SCREEN (AGORA OTIMIZADO) */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, clipPath: "circle(0% at 100% 0)" }}
-                        animate={{ opacity: 1, clipPath: "circle(150% at 100% 0)" }}
-                        exit={{ opacity: 0, clipPath: "circle(0% at 100% 0)" }}
-                        transition={{ type: "spring", damping: 30, stiffness: 100, duration: 0.5 }}
-                        className="fixed inset-0 w-full h-full bg-[#f4f1ea] z-40 md:hidden flex flex-col justify-between overflow-hidden"
+                        initial={{ opacity: 0, x: '100%' }} // Desliza da direita
+                        animate={{ opacity: 1, x: 0 }}      // Slide-in
+                        exit={{ opacity: 0, x: '100%' }}    // Slide-out e Fade
+                        transition={{ duration: 0.4, ease: "easeOut" }} // Transição rápida (tween)
+                        className="fixed inset-0 w-full h-full bg-[#f4f1ea] z-40 md:hidden flex flex-col justify-between overflow-y-auto" // Added overflow-y-auto
                         style={{
                             backgroundImage: 'url("https://www.transparenttextures.com/patterns/cardboard-flat.png")',
                             backgroundAttachment: 'fixed'
