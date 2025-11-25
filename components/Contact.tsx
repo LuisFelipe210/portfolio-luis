@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <section id="contato" className="py-20 bg-[#1a110e] relative overflow-hidden font-sans">
+        <section id="contato" className="py-16 sm:py-20 bg-[#1a110e] relative overflow-hidden font-sans">
             {/* Background Madeira Escura */}
             <div className="absolute inset-0 opacity-40 pointer-events-none"
                  style={{
@@ -32,18 +32,20 @@ const Contact: React.FC = () => {
 
                     {/* LADO ESQUERDO: QUADRO NEGRO (Infos) */}
                     <motion.div
-                        className="bg-[#2b2b2b] p-8 text-[#e0e0e0] border-[8px] border-[#463325] relative flex flex-col justify-between shadow-2xl"
+                        className="bg-[#2b2b2b] p-6 sm:p-8 text-[#e0e0e0] border-[8px] border-[#463325] relative flex flex-col justify-between shadow-2xl"
                         initial={{ x: -30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
+                        {/* Textura de Giz */}
                         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/black-chalk.png')] pointer-events-none"></div>
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-2 mb-6 border-b-2 border-dashed border-white/20 pb-3">
                                 <Coffee className="text-white/80" size={24} />
-                                <h2 className="text-2xl font-serif text-white tracking-wide" style={{ fontFamily: '"Chalkboard SE", "Comic Sans MS", sans-serif' }}>
+                                {/* Tamanho menor para celular (sm:text-3xl) */}
+                                <h2 className="text-xl sm:text-2xl font-serif text-white tracking-wide" style={{ fontFamily: '"Chalkboard SE", "Comic Sans MS", sans-serif' }}>
                                     Fale Conosco
                                 </h2>
                             </div>
@@ -51,21 +53,21 @@ const Contact: React.FC = () => {
                             <div className="space-y-6 font-serif text-sm">
                                 <div>
                                     <h3 className="text-rooster-500 font-bold uppercase text-[10px] tracking-[0.2em] mb-1">Balcão (Email)</h3>
-                                    <a href={`mailto:${PERSONAL_INFO.email}`} className="text-base text-white hover:text-rooster-400 border-b border-white/20 hover:border-rooster-400 transition-all pb-0.5 inline-block">
+                                    <a href={`mailto:${PERSONAL_INFO.email}`} className="text-sm sm:text-base text-white hover:text-rooster-400 border-b border-white/20 hover:border-rooster-400 transition-all pb-0.5 inline-block">
                                         {PERSONAL_INFO.email}
                                     </a>
                                 </div>
 
                                 <div>
                                     <h3 className="text-rooster-500 font-bold uppercase text-[10px] tracking-[0.2em] mb-1">Localização</h3>
-                                    <p className="text-base text-white flex items-center gap-2">
+                                    <p className="text-sm sm:text-base text-white flex items-center gap-2">
                                         <MapPin size={16} /> Salvador, Bahia
                                     </p>
                                 </div>
 
                                 <div>
                                     <h3 className="text-rooster-500 font-bold uppercase text-[10px] tracking-[0.2em] mb-1">Certificação</h3>
-                                    <div className="bg-white/5 p-3 rounded border border-white/10 border-dashed">
+                                    <div className="bg-white/5 p-3 border border-white/10 border-dashed">
                                         <p className="font-bold text-white text-xs">{PERSONAL_INFO.education.degree}</p>
                                         <p className="text-xs text-gray-400 mt-1">{PERSONAL_INFO.education.institution} • {PERSONAL_INFO.education.period}</p>
                                     </div>
@@ -82,8 +84,7 @@ const Contact: React.FC = () => {
 
                     {/* LADO DIREITO: COMANDA DE PAPEL (Formulário Otimizado) */}
                     <motion.div
-                        // REMOVIDO: rounded-xl
-                        className="bg-[#f4f1ea] p-6 md:p-8 text-coffee-900 relative flex flex-col shadow-2xl"
+                        className="bg-[#f4f1ea] p-6 sm:p-8 text-coffee-900 relative flex flex-col shadow-2xl"
                         initial={{ x: 30, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         viewport={{ once: true }}
@@ -93,8 +94,7 @@ const Contact: React.FC = () => {
                             backgroundSize: '100% 2rem'
                         }}
                     >
-                        {/* Furinhos Laterais (Mantive, mas ajustei o posicionamento já que não tem mais borda) */}
-                        {/* REMOVIDO: rounded-l-xl */}
+                        {/* Furinhos Laterais */}
                         <div className="absolute left-0 top-0 bottom-0 w-6 border-r border-double border-red-300/40 flex flex-col justify-evenly items-center py-2 bg-gray-50/50">
                             {[...Array(8)].map((_, i) => (
                                 <div key={i} className="w-2 h-2 rounded-full bg-[#1a110e] opacity-70 shadow-inner"></div>
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
                                     <label htmlFor="message" className="block text-[14px] font-bold uppercase text-coffee-700 mb-0.5">Pedido / Mensagem</label>
                                     <textarea
                                         id="message"
-                                        rows={3}
+                                        rows={3} // Reduzi o número de linhas para caber melhor
                                         required
                                         className="w-full bg-white/40 border border-coffee-300 focus:border-rooster-500 outline-none p-3 text-sm text-black font-medium leading-[2rem] shadow-inner resize-none"
                                         placeholder="Sua Mensagem..."
@@ -183,11 +183,11 @@ const Contact: React.FC = () => {
 
                 </div>
 
-                {/* Rodapé Style */}
-                <div className="mt-20 text-center">
-                    <div className="inline-flex items-center gap-2 px-6 py-2 bg-[#2b2b2b] rounded-full text-xs text-gray-400 border border-[#463325]">
-                        &copy; {new Date().getFullYear()} The Roost & Roast • Feito com <span className="text-rooster-500">♥</span> e Cafeína
-                    </div>
+                {/* Rodapé Minimalista */}
+                <div className="mt-12 text-center">
+                    <p className="text-[10px] text-white/30 uppercase tracking-widest">
+                        &copy; {new Date().getFullYear()} The Roost & Roast
+                    </p>
                 </div>
             </div>
         </section>

@@ -108,11 +108,11 @@ const Skills: React.FC = () => {
                                             {skillGroup.category.match(/\((.*?)\)/)?.[1] || "Blend Especial"}
                                         </p>
 
-                                        <ul className="space-y-2 w-full flex-1">
+                                        <ul className="space-y-3 w-full flex-1">
                                             {skillGroup.items.map((tech) => (
-                                                <li key={tech} className="flex items-center justify-between text-coffee-900 bg-white/60 px-3 py-2 rounded-lg shadow-sm border border-white/40 group-hover:bg-white transition-colors">
+                                                <li key={tech} className="flex items-center justify-between text-white bg-coffee-900 px-3 py-2 rounded-lg shadow-md border border-coffee-800 transition-colors">
                                                     <span className="font-bold text-sm">{tech}</span>
-                                                    <Check size={14} className="text-rooster-600" strokeWidth={3} />
+                                                    <Check size={14} className="text-rooster-300" strokeWidth={3} />
                                                 </li>
                                             ))}
                                         </ul>
