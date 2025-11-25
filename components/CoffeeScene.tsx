@@ -143,14 +143,19 @@ const CoffeeScene = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Contagem dinâmica: 40 no desktop, 15 no mobile
-    const count = isMobile ? 13 : 40;
-    const floatSpeed = isMobile ? 0 : 1.0;
+    // ** OTIMIZAÇÃO: Não renderizar a cena 3D no mobile. **
+    if (isMobile) {
+        return null;
+    }
+
+    // Contagem e velocidade padrão para Desktop
+    const count = 40;
+    const floatSpeed = 1.0;
 
     return (
         <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
             <Canvas
-                dpr={[1, isMobile ? 1 : 1.5]}
+                dpr={[1, 1.5]}
                 gl={{
                     antialias: false,
                     powerPreference: "high-performance",
@@ -163,9 +168,9 @@ const CoffeeScene = () => {
                 <directionalLight position={[15, 10, 5]} intensity={2} color="#ffffff" />
                 <directionalLight position={[-10, -5, -5]} intensity={1} color="#e34234" />
 
-                {/* Float com velocidade zero no mobile */}
+                {/* Float com velocidade zero no mobile (Agora isMobile é sempre false aqui) */}
                 <Float speed={floatSpeed} rotationIntensity={0.5} floatIntensity={0.2}>
-                    <BeanCloud count={count} isMobile={isMobile} />
+                    <BeanCloud count={count} isMobile={false} />
                 </Float>
 
                 <fog attach="fog" args={['#fdf8f6', 15, 35]} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SKILLS } from '../constants';
 import { Check, Code2, Database, TerminalSquare, BrainCircuit } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -6,27 +6,30 @@ import { motion } from 'framer-motion';
 // Ícones mapeados
 const categoryIcons = [Code2, Database, TerminalSquare, BrainCircuit];
 
-// Fumainha chique (Vapor)
-const Steam = () => {
+// Fumainha chique (Vapor) - AGORA BEM MAIS VISÍVEL
+const Steam = ({ isMobile }: { isMobile: boolean }) => {
+    // OTIMIZAÇÃO: Não renderiza no mobile.
+    if (isMobile) return null;
+
     return (
         <div className="absolute -top-20 left-1/2 -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0">
-            {[...Array(3)].map((_, i) => (
+            {[...Array(4)].map((_, i) => ( // Aumentei para 4 partículas para mais volume de vapor
                 <motion.div
                     key={i}
-                    initial={{ y: 0, opacity: 0, scale: 0.8 }}
+                    // AJUSTE CRUCIAL: Aumentei o tamanho (w-3 h-8) e o blur para maior visibilidade
+                    className="w-3 h-8 bg-white/80 rounded-full blur-md"
+                    initial={{ y: 0, opacity: 0 }}
                     animate={{
-                        y: -40,
-                        opacity: [0, 0.4, 0],
-                        scale: [1, 1.5, 2],
-                        x: i % 2 === 0 ? [0, 5, 0] : [0, -5, 0] // Zigue-zague leve
+                        y: -80, // Subindo mais alto (80px)
+                        opacity: [0, 0.8, 0], // Opacidade mais forte (80%)
+                        scale: [1, 1.5], // Leve crescimento
                     }}
                     transition={{
-                        duration: 2,
+                        duration: 3 + Math.random() * 1.5, // Duração variável para movimento suave
                         repeat: Infinity,
-                        delay: i * 0.5,
-                        ease: "easeInOut"
+                        delay: i * 0.5, // Atraso sequencial
+                        ease: "linear"
                     }}
-                    className="w-4 h-12 bg-white rounded-full blur-xl"
                 />
             ))}
         </div>
@@ -34,6 +37,20 @@ const Steam = () => {
 };
 
 const Skills: React.FC = () => {
+    // Adiciona a lógica de isMobile
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <section id="skills" className="py-32 bg-[#eaddd7] relative overflow-hidden">
             {/* Background de Mesa */}
@@ -72,8 +89,8 @@ const Skills: React.FC = () => {
                                 transition={{ duration: 0.4 }} // REMOVIDO: delay
                                 className="relative group mt-10"
                             >
-                                {/* 1. VAPOR (Saindo de trás do café) */}
-                                <Steam />
+                                {/* 1. VAPOR (Saindo de trás do café) - AGORA VISÍVEL! */}
+                                <Steam isMobile={isMobile} />
 
                                 {/* 2. ALÇA DA XÍCARA (Fica atrás do corpo - z-0) */}
                                 <div className="absolute top-8 -right-8 w-20 h-24 border-[12px] border-coffee-800 rounded-r-[3rem] border-l-0 bg-transparent shadow-xl transition-transform duration-300 group-hover:rotate-6 z-0" />

@@ -38,8 +38,9 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleResize);
-    }, []); // Removi o resize listener, já que o evento resize estava sendo referenciado na função de scroll
+        // CORREÇÃO: Usar handleScroll no cleanup, já que era o listener de 'scroll'
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         if (isOpen) {

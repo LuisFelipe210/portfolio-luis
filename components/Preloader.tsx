@@ -47,7 +47,8 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
                 </div>
 
                 {/* --- 2. O FLUXO DE CAFÉ (Caindo) --- */}
-                <div className="relative h-12 w-full flex justify-center -mt-1 z-10">
+                {/* AJUSTE: Mudei h-12 para h-24 para dobrar a altura do fluxo e alcançar a jarra */}
+                <div className="relative h-24 w-full flex justify-center -mt-1 z-10">
                     <motion.div
                         className="w-1.5 bg-[#4E342E] rounded-full" // Marrom bem escuro
                         initial={{ height: 0 }}
@@ -59,7 +60,8 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
                             key={i}
                             className="absolute top-0 w-1.5 h-3 bg-[#4E342E] rounded-full"
                             initial={{ y: 0, opacity: 0 }}
-                            animate={{ y: 40, opacity: [0, 1, 0] }}
+                            // AJUSTE: Mudei y: 40 para y: 90 (um pouco menos que a altura do container de 96px)
+                            animate={{ y: 170, opacity: [0, 1, 0] }}
                             transition={{
                                 repeat: Infinity,
                                 duration: 0.8,
