@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === SCROLLBAR PERSONALIZADA (O Fio de Café) === */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo da trilha (onde a barra corre) */
+::-webkit-scrollbar-track {
+    background: #150f0d; /* Fundo bem escuro, quase preto */
+}
+
+/* A barra em si (O café) */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #8B5A2B, #3E2723); /* Gradiente Caramelo -> Café */
+    border-radius: 5px;
+    border: 2px solid #150f0d; /* Borda pra separar do fundo */
+}
+
+/* Quando passa o mouse na barra */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #e34234, #8B5A2B); /* Acende um vermelho no topo */
+}
+
+/* === SELEÇÃO DE TEXTO (Highlight) === */
+/* Quando o usuário seleciona o texto, fica vermelho galo */
+::selection {
+    background-color: #e34234;
+    color: #ffffff;
+}
+
+/* Pra Firefox */
+::-moz-selection {
+    background-color: #e34234;
+    color: #ffffff;
+}
+
+/* === SUAVIZAÇÃO DE FONTE === */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
+}
+
+/* Classe utilitária pra esconder scrollbar mas manter funcional (se precisar) */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
