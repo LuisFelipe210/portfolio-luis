@@ -1,12 +1,20 @@
-// src/components/CoffeeScene.tsx
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
+import { ThreeElements } from '@react-three/fiber';
+import { extend } from '@react-three/fiber';
 
-// GEOMETRIA DO GRÃO (Mantive a lógica, mas se parecia urso, o tamanho menor ajuda a disfarçar)
+extend(THREE);
+declare global {
+    namespace JSX {
+        interface IntrinsicElements extends ThreeElements {}
+    }
+}
+
+// Geometria procedural do grão de café (Mantida a otimização de 24 segmentos)
 const createCoffeeBeanGeometry = () => {
-    const geometry = new THREE.SphereGeometry(1, 32, 32);
+    const geometry = new THREE.SphereGeometry(1, 24, 24);
     const posAttribute = geometry.attributes.position;
     const v = new THREE.Vector3();
 
@@ -38,66 +46,74 @@ const createCoffeeBeanGeometry = () => {
     return geometry;
 };
 
-const BeanCloud = ({ count = 300 }) => {
+// Componente da Nuvem de Grãos com lógica de animação condicional
+const BeanCloud = ({ count, isMobile }) => {
     const mesh = useRef<THREE.InstancedMesh>(null);
     const light = useRef<THREE.PointLight>(null);
 
+    // Gera a geometria e material apenas uma vez
     const beanGeometry = useMemo(() => createCoffeeBeanGeometry(), []);
 
     const beanMaterial = useMemo(() => new THREE.MeshStandardMaterial({
         color: "#2c1a16",
-        roughness: 0.9, // Aumentei a aspereza pra ficar menos "plástico"
+        roughness: 0.9,
         metalness: 0.0,
+        flatShading: true, // Adicionei flat shading para otimização
     }), []);
 
+    // Gera as partículas e seus fatores de movimento (depende de count e isMobile)
     const particles = useMemo(() => {
         const temp = [];
+        // Reduzimos a dispersão no mobile
+        const dispersion = isMobile ? 100 : 500;
+
         for (let i = 0; i < count; i++) {
             const t = Math.random() * 100;
             const factor = 20 + Math.random() * 100;
-
-            // === MUDANÇA 1: VELOCIDADE ===
-            // Antes era 0.005, baixei pra 0.001 (quase parando, bem zen)
             const speed = 0.001 + Math.random() / 500;
-
-            const xFactor = -50 + Math.random() * 100;
-            const yFactor = -50 + Math.random() * 100;
-            const zFactor = -50 + Math.random() * 100;
-
-            // === MUDANÇA 2: TAMANHO ===
-            // Antes era 0.8 a 1.4. Agora é 0.4 a 0.8 (metade do tamanho)
-            const scale = 0.4 + Math.random() * 0.4;
+            const xFactor = -dispersion + Math.random() * dispersion * 2;
+            const yFactor = -dispersion + Math.random() * dispersion * 2;
+            const zFactor = -dispersion + Math.random() * dispersion * 2;
+            const scale = 0.4 + Math.random() * 0.4; // Mantive a escala pequena
 
             temp.push({ t, factor, speed, xFactor, yFactor, zFactor, scale });
         }
         return temp;
-    }, [count]);
+    }, [count, isMobile]);
 
     const dummy = new THREE.Object3D();
 
     useFrame((state) => {
         if (!mesh.current) return;
 
-        if (light.current) {
-            light.current.position.x = THREE.MathUtils.lerp(light.current.position.x, state.mouse.x * 20, 0.1);
-            light.current.position.y = THREE.MathUtils.lerp(light.current.position.y, (state.mouse.y * 20), 0.1);
+        // Se for desktop, anima a luz e os grãos
+        if (!isMobile) {
+            if (light.current) {
+                light.current.position.x = THREE.MathUtils.lerp(light.current.position.x, state.mouse.x * 20, 0.1);
+                light.current.position.y = THREE.MathUtils.lerp(light.current.position.y, (state.mouse.y * 20), 0.1);
+            }
         }
 
         particles.forEach((particle, i) => {
             let { t, factor, speed, xFactor, yFactor, zFactor, scale } = particle;
 
-            // Aplica a velocidade reduzida
-            t = particle.t += speed;
+            if (!isMobile) {
+                // ANIMAÇÃO DE MOVIMENTO: SÓ NO DESKTOP
+                t = particle.t += speed;
+            }
+            // A rotação sempre deve acontecer para a luz bater certo
             const s = Math.cos(t);
 
+            // Posição: Usa os fatores de dispersão, mas a animação t só avança no desktop
             dummy.position.set(
-                (particle.xFactor + (Math.cos(t) * xFactor) + (Math.sin(t * 1) * factor) + (Math.cos(t * 2) * factor)) / 10,
-                (particle.yFactor + (Math.sin(t) * yFactor) + (Math.cos(t * 2) * factor) + (Math.cos(t * 1) * factor)) / 10,
-                (particle.zFactor + (Math.cos(t) * zFactor) + (Math.sin(t * 3) * factor) + (Math.cos(t * 2) * factor)) / 10
+                (particle.xFactor + (Math.cos(t) * xFactor) + (Math.sin(t * 1) * factor) + (Math.cos(t * 2) * factor)) / 100, // Ajustei divisor para 100
+                (particle.yFactor + (Math.sin(t) * yFactor) + (Math.cos(t * 2) * factor) + (Math.cos(t * 1) * factor)) / 100, // Ajustei divisor para 100
+                (particle.zFactor + (Math.cos(t) * zFactor) + (Math.sin(t * 3) * factor) + (Math.cos(t * 2) * factor)) / 100  // Ajustei divisor para 100
             );
 
             dummy.scale.set(scale, scale, scale);
-            dummy.rotation.set(s * 5 + t, t * 0.5, s * 2);
+            // Rotação: Mantive a rotação para os grãos não parecerem um desenho 2D estático
+            dummy.rotation.set(s * 5 + t * 0.1, t * 0.1, s * 2 + t * 0.1);
             dummy.updateMatrix();
 
             mesh.current.setMatrixAt(i, dummy.matrix);
@@ -114,26 +130,42 @@ const BeanCloud = ({ count = 300 }) => {
 };
 
 const CoffeeScene = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Contagem dinâmica: 40 no desktop, 15 no mobile
+    const count = isMobile ? 13 : 40;
+    const floatSpeed = isMobile ? 0 : 1.0;
+
     return (
         <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
             <Canvas
-                dpr={[1, window.innerWidth < 768 ? 1 : 1.5]}
+                dpr={[1, isMobile ? 1 : 1.5]}
                 gl={{
                     antialias: false,
                     powerPreference: "high-performance",
                     stencil: false,
                     depth: true
                 }}
-                camera={{ position: [0, 0, 20], fov: 45 }}
+                camera={{ position: [0, 0, 10], fov: 60 }}
             >
                 <ambientLight intensity={0.5} color="#ffffff" />
                 <directionalLight position={[15, 10, 5]} intensity={2} color="#ffffff" />
                 <directionalLight position={[-10, -5, -5]} intensity={1} color="#e34234" />
 
-                {/* === MUDANÇA 3: FLUTUAÇÃO GERAL MAIS LENTA === */}
-                {/* speed=0.5 (era 1.5) e rotationIntensity=0.2 (era 0.5) */}
-                <Float speed={1.0} rotationIntensity={0.5} floatIntensity={0.2}>
-                    <BeanCloud count={80} />
+                {/* Float com velocidade zero no mobile */}
+                <Float speed={floatSpeed} rotationIntensity={0.5} floatIntensity={0.2}>
+                    <BeanCloud count={count} isMobile={isMobile} />
                 </Float>
 
                 <fog attach="fog" args={['#fdf8f6', 15, 35]} />

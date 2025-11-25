@@ -1,6 +1,6 @@
 import React from 'react';
 import { PROJECTS } from '../constants';
-import { ExternalLink, Github, Tag, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SmokeEffect from './SmokeEffect';
 
@@ -10,7 +10,7 @@ const Projects: React.FC = () => {
             {/* Background: Textura de Juta/Saca de café escura */}
             <div className="absolute inset-0 opacity-10 pointer-events-none"
                  style={{
-                     backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                     backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                  }}>
             </div>
 
@@ -53,22 +53,21 @@ const Projects: React.FC = () => {
                     {PROJECTS.map((project, idx) => (
                         <motion.div
                             key={project.id}
-                            initial={{ opacity: 0, y: 100, rotate: 2 }}
-                            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.7, delay: idx * 0.15, type: "spring", bounce: 0.3 }}
+                            transition={{ duration: 0.5 }} // REMOVIDO: delay e type: "spring"
                             className="group relative"
                         >
                             {/* O PACOTE DE CAFÉ (Coffee Bag) */}
                             <div className="relative bg-[#e6e2de] w-full rounded-b-xl shadow-2xl transition-transform duration-500 group-hover:-translate-y-4 group-hover:rotate-1 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden isolate">
 
-                                {/* 1. SELO DO PACOTE (Topo ondulado/crimped) */}
+                                {/* 1. SELO DO PACOTE */}
                                 <div className="h-4 bg-[#d1c7c0] border-b-2 border-[#b8afa8] relative z-20 flex items-center justify-center">
-                                    {/* Textura de lacre */}
                                     <div className="w-full h-full opacity-20 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,#000_2px,#000_4px)]"></div>
                                 </div>
 
-                                {/* 2. VÁLVULA DE AROMA (Detalhe Realista) */}
+                                {/* 2. VÁLVULA DE AROMA */}
                                 <div className="absolute top-8 right-6 w-6 h-6 rounded-full border border-gray-300 shadow-inner bg-transparent z-20 opacity-60 flex items-center justify-center">
                                     <div className="w-2 h-2 rounded-full bg-gray-400/50"></div>
                                 </div>
@@ -139,7 +138,7 @@ const Projects: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Efeito de Material do Pacote (Brilho Plástico/Papel) */}
+                                {/* Efeito de Material do Pacote */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-white/5 to-white/20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 mix-blend-overlay rounded-b-xl"></div>
                             </div>
 

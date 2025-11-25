@@ -69,7 +69,7 @@ const Skills: React.FC = () => {
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: idx * 0.15 }}
+                                transition={{ duration: 0.4 }} // REMOVIDO: delay
                                 className="relative group mt-10"
                             >
                                 {/* 1. VAPOR (Saindo de trás do café) */}
