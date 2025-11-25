@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Coffee, Menu, X, Egg } from 'lucide-react';
+import { Coffee, Menu, X, Egg, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RoosterLogo from './RoosterLogo';
 
-// Fumacinha dos links (Mantida porque é estilosa)
+// Componente de Fumacinha para o Hover do Link
 const LinkSteam = () => (
     <motion.div
         className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-0.5 pointer-events-none"
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
     }, [isOpen]);
 
     const navLinks = [
-        { name: 'Sobre', href: '#sobre' },
+        { name: 'Apresentação', href: '#sobre' }, // AQUI ESTÁ A MUDANÇA
         { name: 'Menu (Skills)', href: '#skills' },
         { name: 'Safra (Projetos)', href: '#projetos' },
         { name: 'O Caixa', href: '#contato' },
@@ -65,8 +65,8 @@ const Navbar: React.FC = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
                     scrolled
-                        ? 'bg-[#2c1a16]/95 backdrop-blur-md shadow-md py-3 border-b border-white/5' // Fundo na barra toda
-                        : 'bg-transparent py-6' // Transparente no topo
+                        ? 'bg-[#2c1a16]/95 backdrop-blur-md shadow-md py-3 border-b border-white/5'
+                        : 'bg-transparent py-6'
                 }`}
             >
                 {/* Container do Conteúdo (Centralizado) */}

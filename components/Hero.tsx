@@ -8,7 +8,7 @@ import SmokeEffect from './SmokeEffect';
 
 const Hero: React.FC = () => {
     return (
-        <section className="min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative bg-coffee-50">
+        <section id="sobre" className="min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative bg-coffee-50">
 
             {/* BACKGROUND 3D */}
             <Suspense fallback={<div className="absolute inset-0 bg-coffee-50" />}>
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
 
                     {/* Text Content */}
                     <motion.div
-                        className="sm:text-center lg:col-span-7 lg:text-left order-2 lg:order-1" // Garante que texto vem antes do gráfico no mobile
+                        className="sm:text-center lg:col-span-7 lg:text-left order-2 lg:order-1"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
 
                     {/* Chart Content */}
                     <motion.div
-                        className="mt-12 lg:mt-0 lg:col-span-5 relative order-1 lg:order-2" // Garante que o gráfico fica abaixo do texto no mobile
+                        className="mt-12 lg:mt-0 lg:col-span-5 relative order-1 lg:order-2"
                         initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                         animate={{ opacity: 1, scale: 1, rotate: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
@@ -109,7 +109,6 @@ const Hero: React.FC = () => {
                                 Blend de Habilidades
                             </h3>
 
-                            {/* Altura Responsiva AQUI */}
                             <div className="h-[240px] md:h-[300px] w-full">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <RadarChart cx="50%" cy="50%" outerRadius="75%" data={RADAR_DATA}>
