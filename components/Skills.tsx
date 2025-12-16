@@ -1,147 +1,137 @@
-import React, { useState, useEffect } from 'react';
+"use client"
+
+import React from 'react';
 import { SKILLS } from '../constants';
-import { Check, Code2, Database, TerminalSquare, BrainCircuit } from 'lucide-react';
+import { Code2, Database, TerminalSquare, BrainCircuit, Cpu, Zap, Activity, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Ícones mapeados
-const categoryIcons = [Code2, Database, TerminalSquare, BrainCircuit];
-
-// Fumainha chique (Vapor) - AGORA BEM MAIS VISÍVEL
-const Steam = ({ isMobile }: { isMobile: boolean }) => {
-    // OTIMIZAÇÃO: Não renderiza no mobile.
-    if (isMobile) return null;
-
-    return (
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0">
-            {[...Array(4)].map((_, i) => ( // Aumentei para 4 partículas para mais volume de vapor
-                <motion.div
-                    key={i}
-                    // AJUSTE CRUCIAL: Aumentei o tamanho (w-3 h-8) e o blur para maior visibilidade
-                    className="w-3 h-8 bg-white/80 rounded-full blur-md"
-                    initial={{ y: 0, opacity: 0 }}
-                    animate={{
-                        y: -80, // Subindo mais alto (80px)
-                        opacity: [0, 0.8, 0], // Opacidade mais forte (80%)
-                        scale: [1, 1.5], // Leve crescimento
-                    }}
-                    transition={{
-                        duration: 3 + Math.random() * 1.5, // Duração variável para movimento suave
-                        repeat: Infinity,
-                        delay: i * 0.5, // Atraso sequencial
-                        ease: "linear"
-                    }}
-                />
-            ))}
-        </div>
-    );
-};
+// Mapeamento de ícones
+const getIcon = (idx: number) => {
+    const icons = [Code2, Database, TerminalSquare, BrainCircuit];
+    return icons[idx] || Cpu;
+}
 
 const Skills: React.FC = () => {
-    // Adiciona a lógica de isMobile
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     return (
-        <section id="skills" className="py-32 bg-[#eaddd7] relative overflow-hidden">
-            {/* Background de Mesa */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none"
-                 style={{ backgroundImage: 'radial-gradient(#6f5247 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}>
+        <section id="skills" className="py-24 bg-[#120c0b] relative overflow-hidden">
+
+            {/* === BACKGROUND TECH === */}
+            {/* Grid estilo "Blueprint" */}
+            <div className="absolute inset-0 opacity-[0.05]"
+                 style={{
+                     backgroundImage: 'linear-gradient(#e34234 1px, transparent 1px), linear-gradient(90deg, #e34234 1px, transparent 1px)',
+                     backgroundSize: '40px 40px'
+                 }}>
             </div>
 
+            {/* Vinheta escura nas bordas */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#120c0b_100%)] pointer-events-none" />
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-32">
+
+                {/* HEADER AGRESSIVO */}
+                <div className="mb-20 relative">
                     <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center gap-2 px-3 py-1 bg-rooster-600/10 border border-rooster-600/30 rounded-none mb-4"
+                    >
+                        <div className="w-2 h-2 bg-rooster-500 animate-pulse" />
+                        <span className="text-rooster-500 text-xs font-mono font-bold uppercase tracking-widest">System Status: Online</span>
+                    </motion.div>
+
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="text-4xl md:text-6xl font-black text-[#eaddd7] tracking-tighter uppercase font-sans"
                     >
-                        <h2 className="text-rooster-600 font-bold tracking-widest uppercase text-sm mb-3">Cardápio da Casa</h2>
-                        <p className="text-4xl md:text-5xl font-extrabold font-serif text-coffee-900 mb-6 drop-shadow-sm">
-                            Menu de Habilidades
-                        </p>
-                        <p className="max-w-2xl mx-auto text-coffee-800 text-lg font-medium">
-                            Preparado na hora, quente e sem bugs (na maioria das vezes).
-                        </p>
-                    </motion.div>
+                        Arsenal <span className="text-transparent bg-clip-text bg-gradient-to-r from-rooster-500 to-orange-600">Técnico</span>
+                    </motion.h2>
+                    <div className="h-1 w-24 bg-rooster-600 mt-4" />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20 pt-10">
+                {/* GRID DE CARDS "SYSTEM MODULES" */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     {SKILLS.map((skillGroup, idx) => {
-                        const Icon = categoryIcons[idx] || Code2;
+                        const Icon = getIcon(idx);
 
                         return (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 50 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.4 }} // REMOVIDO: delay
-                                className="relative group mt-10"
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className="group relative"
                             >
-                                {/* 1. VAPOR (Saindo de trás do café) - AGORA VISÍVEL! */}
-                                <Steam isMobile={isMobile} />
+                                {/* Efeito de Borda "Glow" no Hover */}
+                                <div className="absolute -inset-0.5 bg-gradient-to-r from-rooster-600 to-orange-600 rounded-sm opacity-0 group-hover:opacity-100 transition duration-500 blur-sm group-hover:blur-md" />
 
-                                {/* 2. ALÇA DA XÍCARA (Fica atrás do corpo - z-0) */}
-                                <div className="absolute top-8 -right-8 w-20 h-24 border-[12px] border-coffee-800 rounded-r-[3rem] border-l-0 bg-transparent shadow-xl transition-transform duration-300 group-hover:rotate-6 z-0" />
+                                {/* O CARD EM SI (Estilo Industrial/Militar) */}
+                                <div className="relative h-full bg-[#1a1110] border border-white/10 p-1 flex flex-col rounded-sm overflow-hidden">
 
-                                {/* 3. CORPO DA XÍCARA (z-10) */}
-                                <div className="relative z-10 bg-gradient-to-br from-coffee-50 to-[#dcd0c8] min-h-[380px] w-full rounded-b-[4rem] rounded-t-sm shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] border-x border-b border-white/50 flex flex-col items-center transition-transform duration-300 group-hover:-translate-y-4">
-
-                                    {/* BOCA DA XÍCARA (Abertura Oval em cima) */}
-                                    <div className="absolute -top-8 w-[104%] h-16 bg-[#3f2e2a] rounded-[50%] border-4 border-[#eaddd7] shadow-inner overflow-hidden flex items-center justify-center z-20">
-                                        {/* Café líquido */}
-                                        <div className="w-[90%] h-[80%] bg-[#2c1a16] rounded-[50%] shadow-[inset_0_5px_10px_rgba(0,0,0,0.8)] opacity-95 relative overflow-hidden">
-                                            {/* Reflexo no café */}
-                                            <div className="absolute top-2 left-4 w-1/3 h-4 bg-white/5 blur-sm -rotate-12 rounded-full" />
-
-                                            {/* Bolhas no café (Decorativo) */}
-                                            <div className="absolute bottom-2 right-8 w-2 h-2 bg-[#6f5247] rounded-full opacity-50" />
-                                            <div className="absolute top-4 right-12 w-1 h-1 bg-[#6f5247] rounded-full opacity-50" />
+                                    {/* Header do Card (Parecendo janela de terminal) */}
+                                    <div className="bg-[#251816] border-b border-white/5 p-4 flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <div className="p-2 bg-rooster-600/10 border border-rooster-600/20 rounded-sm text-rooster-500">
+                                                <Icon size={20} />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-[#eaddd7] text-lg leading-none uppercase tracking-wide">
+                                                    {skillGroup.category.split(' ')[0]}
+                                                </h3>
+                                                <p className="text-[10px] text-white/40 font-mono mt-1">
+                                                    MODULE_0{idx + 1}
+                                                </p>
+                                            </div>
                                         </div>
+                                        <Activity size={16} className="text-green-500/50" />
                                     </div>
 
-                                    {/* Ícone flutuando sobre o café */}
-                                    <div className="absolute -top-12 z-30 bg-rooster-600 p-3 rounded-2xl shadow-lg border-2 border-white/20 transform group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300">
-                                        <Icon size={28} className="text-white" />
-                                    </div>
+                                    {/* Corpo do Card */}
+                                    <div className="p-6 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] bg-opacity-5 flex-1 relative">
+                                        {/* Linhas decorativas */}
+                                        <div className="absolute top-0 right-6 w-px h-full bg-white/5 border-r border-dashed border-white/5" />
 
-                                    {/* Conteúdo do Card */}
-                                    <div className="mt-12 px-6 pb-8 w-full flex flex-col h-full">
-                                        <h3 className="text-xl font-extrabold text-coffee-900 text-center mb-1 font-serif">
-                                            {skillGroup.category.split('(')[0]}
-                                        </h3>
-                                        <p className="text-[10px] text-center text-coffee-600 uppercase tracking-widest mb-6 font-bold opacity-70">
-                                            {skillGroup.category.match(/\((.*?)\)/)?.[1] || "Blend Especial"}
-                                        </p>
-
-                                        <ul className="space-y-3 w-full flex-1">
-                                            {skillGroup.items.map((tech) => (
-                                                <li key={tech} className="flex items-center justify-between text-white bg-coffee-900 px-3 py-2 rounded-lg shadow-md border border-coffee-800 transition-colors">
-                                                    <span className="font-bold text-sm">{tech}</span>
-                                                    <Check size={14} className="text-rooster-300" strokeWidth={3} />
+                                        <ul className="space-y-4 relative z-10">
+                                            {skillGroup.items.map((tech, i) => (
+                                                <li key={tech} className="flex flex-col gap-1">
+                                                    <div className="flex justify-between items-end text-sm">
+                                                        <span className="font-mono text-[#eaddd7] font-bold group-hover/li:text-rooster-400 transition-colors">
+                                                            {tech}
+                                                        </span>
+                                                        <span className="text-[10px] text-white/30 font-mono">
+                                                            v{(Math.random() * 5 + 1).toFixed(1)}.0
+                                                        </span>
+                                                    </div>
+                                                    {/* Barra de Progresso Decorativa */}
+                                                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                                        <motion.div
+                                                            className="h-full bg-rooster-600"
+                                                            initial={{ width: 0 }}
+                                                            whileInView={{ width: `${85 + Math.random() * 15}%` }}
+                                                            transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
+                                                        />
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
 
-                                    {/* Brilho lateral na xícara (Cerâmica) */}
-                                    <div className="absolute top-10 left-3 w-4 h-[80%] bg-gradient-to-b from-white/40 to-transparent blur-md rounded-full pointer-events-none" />
+                                    {/* Footer do Card */}
+                                    <div className="bg-[#150e0d] p-3 border-t border-white/5 flex justify-between items-center text-[10px] text-white/30 font-mono uppercase">
+                                        <span>Status: Operational</span>
+                                        <div className="flex gap-1">
+                                            <div className="w-1.5 h-1.5 bg-rooster-600 rounded-full animate-pulse" />
+                                            <div className="w-1.5 h-1.5 bg-white/20 rounded-full" />
+                                            <div className="w-1.5 h-1.5 bg-white/20 rounded-full" />
+                                        </div>
+                                    </div>
                                 </div>
-
-                                {/* 4. PIRES (Sombra de base) */}
-                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[120%] h-8 bg-[#3f2e2a] rounded-[50%] blur-sm opacity-20 shadow-xl z-0 scale-90 group-hover:scale-75 transition-transform duration-300" />
-
                             </motion.div>
                         );
                     })}

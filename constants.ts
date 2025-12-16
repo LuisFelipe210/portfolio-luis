@@ -7,58 +7,68 @@ export const PERSONAL_INFO = {
     linkedin: "https://linkedin.com/in/luis-feliipe-desenvolvedor",
     github: "https://github.com/LuisFelipe210",
     education: {
-        degree: "Tecnólogo em Análise e Desenvolvimento de Sistemas", // ATUALIZADO: Tecnólogo
+        degree: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
         institution: "UNIFACS – Universidade Salvador",
-        period: "Previsão de Conclusão: Dez 2027" // ATUALIZADO: Previsão
+        period: "Previsão de Conclusão: Dez 2027"
     },
-    summary: "Desenvolvedor Web em início de carreira, transformando café em código limpo. Sólida experiência prática em projetos full-stack utilizando TypeScript, React, Node.js e Docker. Apaixonado por criar soluções, criar galinhas (metaforicamente ou não) e resolver problemas complexos."
+    summary: "Desenvolvedor Web focado em performance e escalabilidade. Experiência prática na construção de aplicações modernas utilizando o ecossistema JavaScript (React, Node.js) e TypeScript. Apaixonado por código limpo e arquitetura de software eficiente."
 };
 
 export const PROJECTS: Project[] = [
     {
-        id: 'hello-foto',
-        title: 'Hellô Borges Fotografia',
-        description: 'Plataforma robusta para gestão de estúdio fotográfico. Inclui portfólio público, blog (Journal), e área do cliente para seleção de fotos. Dashboard administrativo completo para gestão de ativos.',
-        link: 'https://www.hellofotografia.com.br/',
-        tags: ['React', 'Node.js', 'MongoDB', 'Tailwind', 'Cloudinary'],
+        id: 'brand-criativo',
+        title: 'Brand Criativo - Identidade & Web',
+        description: '"Desenvolvimento da nova casa digital da Brand Criativo. O objetivo era fugir do minimalismo padrão e criar uma experiência memorável que gritasse \'autoridade\'. Utilizei uma abordagem brutalista com tipografia pesada e contrastes altos para retenção de atenção. O site não é apenas um portfólio, é uma ferramenta de conversão com arquitetura de informação focada em transformar visitantes em leads qualificados.',
+        link: 'https://brandcriativo.com.br/',
+        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'https://picsum.photos/id/250/800/600'
+        imagePlaceholder: 'projects/brand-criativo-cover.png',
     },
     {
-        id: 'ian-granja',
-        title: 'Ian Granja Advocacia',
-        description: 'Site institucional profissional desenvolvido para advogado, focando em credibilidade, performance e SEO para captar clientes.',
-        link: 'https://www.iangranja.adv.br/',
-        tags: ['React', 'UI/UX', 'Responsive'],
+        id: 'hello-foto',
+        title: 'Hellô Borges Fotografia',
+        description: 'Plataforma completa de gestão para estúdio fotográfico. Sistema de portfólio, blog e área do cliente exclusiva para seleção e aprovação de fotos.',
+        link: 'https://www.hellofotografia.com.br/',
+        tags: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'https://picsum.photos/id/450/800/600'
+        imagePlaceholder: 'projects/hello-fotografia-cover.png',
     },
     {
         id: 'emanuel-silvestre',
         title: 'Emanuel Silvestre Advocacia',
-        description: 'Presença digital desenvolvida para escritório de advocacia, com design sóbrio e foco na conversão de contatos através de WhatsApp e formulários.',
+        description: 'Landing Page estratégica para captação de clientes previdenciários. Integração direta com WhatsApp e otimização para mobile.',
         link: 'https://www.emanuelsilvestre.adv.br/',
-        tags: ['Frontend', 'Landing Page', 'SEO'],
+        tags: ['Landing Page', 'Conversion', 'Mobile First'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'https://picsum.photos/id/106/800/600'
+        imagePlaceholder: 'projects/emanuel-cover.png'
+    },
+
+    {
+        id: 'ian-granja',
+        title: 'Ian Granja Advocacia',
+        description: 'Site institucional de alta performance focado em SEO local e conversão de leads. Design otimizado para transmitir autoridade e confiança.',
+        link: 'https://www.iangranja.adv.br/',
+        tags: ['React', 'SEO', 'Performance'],
+        category: ProjectCategory.PROFESSIONAL,
+        imagePlaceholder: 'projects/ian-cover.png'
     },
     {
         id: 'domino',
         title: 'Dominó Multiplayer',
-        description: 'Plataforma de jogo em tempo real. Backend Node.js com WebSockets para baixa latência, autenticação e containers Docker.',
+        description: 'Aplicação de jogo em tempo real utilizando WebSockets para comunicação bidirecional de baixa latência.',
         link: '#',
         repoLink: 'https://github.com/LuisFelipe210',
-        tags: ['Node.js', 'WebSockets', 'Docker', 'PostgreSQL'],
+        tags: ['Node.js', 'WebSockets', 'Docker'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/204/800/600'
     },
     {
         id: 'asset-maintenance',
-        title: 'Assistente de Manutenção',
-        description: 'Aplicação Fullstack para gerenciamento de ativos e alertas de manutenção preventiva. Dashboard intuitivo e API RESTful.',
+        title: 'Gestão de Ativos',
+        description: 'Sistema Fullstack para controle de manutenção preventiva de equipamentos. Dashboard administrativo e relatórios.',
         link: '#',
         repoLink: 'https://github.com/LuisFelipe210',
-        tags: ['NestJS', 'React', 'PostgreSQL', 'TypeScript'],
+        tags: ['NestJS', 'React', 'PostgreSQL'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/5/800/600'
     }
@@ -66,28 +76,28 @@ export const PROJECTS: Project[] = [
 
 export const SKILLS: Skill[] = [
     {
-        category: "Puro Arábica (Core Stack)",
-        items: ["JavaScript (ES6+)", "TypeScript", "React.js", "Node.js"]
+        category: "Frontend Moderno",
+        items: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"]
     },
     {
-        category: "Torra Intensa (Backend & BD)",
-        items: ["NestJS", "Express", "PostgreSQL", "MongoDB", "Redis", "WebSockets"]
+        category: "Backend & API",
+        items: ["Node.js", "NestJS", "Express", "RESTful APIs"]
     },
     {
-        category: "Maquinário (DevOps & Tools)",
-        items: ["Docker", "Git/GitHub", "Nginx", "Linux"]
+        category: "Banco de Dados",
+        items: ["PostgreSQL", "MongoDB", "Redis", "Prisma ORM"]
     },
     {
-        category: "Notas Especiais (Data & AI)",
-        items: ["Python", "Pandas/NumPy", "Engenharia de Prompts"]
+        category: "DevOps & Tools",
+        items: ["Docker", "Git/GitHub", "Linux", "CI/CD"]
     }
 ];
 
 export const RADAR_DATA: StatData[] = [
-    { subject: 'Frontend', A: 120, fullMark: 150 },
+    { subject: 'Frontend', A: 140, fullMark: 150 },
     { subject: 'Backend', A: 130, fullMark: 150 },
-    { subject: 'DevOps', A: 85, fullMark: 150 },
-    { subject: 'Data Science', A: 90, fullMark: 150 },
-    { subject: 'Cafeína', A: 150, fullMark: 150 },
-    { subject: 'Criatividade', A: 140, fullMark: 150 },
+    { subject: 'DevOps', A: 90, fullMark: 150 },
+    { subject: 'Mobile', A: 80, fullMark: 150 },
+    { subject: 'Database', A: 120, fullMark: 150 },
+    { subject: 'Architecture', A: 110, fullMark: 150 },
 ];

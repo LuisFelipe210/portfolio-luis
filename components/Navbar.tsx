@@ -1,47 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Coffee, Menu, X, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import RoosterLogo from './RoosterLogo';
+"use client"
 
-// Componente de Fumacinha para o Hover do Link
-const LinkSteam = () => (
-    <motion.div
-        className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-0.5 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-    >
-        {[...Array(3)].map((_, i) => (
-            <motion.div
-                key={i}
-                className="w-0.5 h-3 bg-white/40 rounded-full blur-[1px]"
-                animate={{
-                    y: -10,
-                    opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                    duration: 1 + Math.random(),
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                    ease: "easeInOut"
-                }}
-            />
-        ))}
-    </motion.div>
-);
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Send, Code2, Github, Linkedin, Instagram } from 'lucide-react';
+import RoosterLogo from './RoosterLogo';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
-        // CORREÇÃO: Usar handleScroll no cleanup, já que era o listener de 'scroll'
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Trava o scroll quando menu abre
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
@@ -50,178 +23,159 @@ const Navbar: React.FC = () => {
         }
     }, [isOpen]);
 
+    // LINKS PROFISSIONAIS
     const navLinks = [
-        { name: 'Apresentação', href: '#sobre' },
-        { name: 'Menu (Skills)', href: '#skills' },
-        { name: 'Safra (Projetos)', href: '#projetos' },
-        { name: 'O Caixa', href: '#contato' },
+        { name: 'Sobre', href: '#sobre' },
+        { name: 'Habilidades', href: '#skills' },
+        { name: 'Projetos', href: '#projetos' },
+        { name: 'Contato', href: '#contato' },
     ];
 
     return (
         <>
-            {/* NAVBAR FIXA FULL-WIDTH */}
-            <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+            {/* --- NAVBAR FIXA --- */}
+            <header
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
                     scrolled
-                        ? 'bg-[#2c1a16]/95 backdrop-blur-md shadow-md py-3 border-b border-white/5'
-                        : 'bg-transparent py-6'
+                        ? 'py-3 bg-[#1a1110]/90 backdrop-blur-md border-b border-white/5 shadow-md'
+                        : 'py-6 bg-transparent'
                 }`}
             >
-                {/* Container do Conteúdo (Centralizado) */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-14">
 
-                        {/* LOGO */}
-                        <motion.div
-                            className="flex-shrink-0 flex items-center gap-3 cursor-pointer group relative z-50"
-                            onClick={() => {
-                                setIsOpen(false);
-                                window.scrollTo(0,0);
-                            }}
-                            whileHover={{ scale: 1.02 }}
+                        {/* === LOGO === */}
+                        <a
+                            href="#"
+                            className="flex items-center gap-3 group relative z-50 shrink-0"
+                            onClick={() => setIsOpen(false)}
                         >
-                            <div className={`p-2 rounded-full border-2 transition-all duration-300 relative overflow-hidden ${
-                                scrolled || isOpen ? 'bg-rooster-600 border-rooster-500' : 'bg-white/10 border-white/20 hover:bg-white/20'
+                            <div className={`p-2 rounded-xl border transition-all duration-500 relative overflow-hidden group-hover:rotate-3 ${
+                                scrolled || isOpen
+                                    ? 'bg-rooster-600 border-rooster-500 shadow-[0_0_15px_rgba(220,38,38,0.2)]'
+                                    : 'bg-white/5 border-white/10 hover:bg-white/10'
                             }`}>
-                                <RoosterLogo className="w-8 h-8 relative z-10 translate-y-1" isScrolled={scrolled || isOpen} />
-                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                                <RoosterLogo className="w-6 h-6 text-white relative z-10" isScrolled={true} />
                             </div>
 
                             <div className="flex flex-col">
-                <span className={`font-serif font-bold text-xl tracking-wide leading-none transition-colors ${
-                    scrolled || isOpen ? 'text-[#eaddd7]' : 'text-coffee-900'
-                }`}>
-                  Luis<span className="text-rooster-500">.</span>Dev
-                </span>
-                                <span className={`text-[10px] uppercase tracking-[0.3em] font-bold ${
-                                    scrolled || isOpen ? 'text-white/40' : 'text-coffee-700'
+                                <span className={`font-serif font-bold text-xl tracking-wide leading-none transition-colors ${
+                                    scrolled || isOpen
+                                        ? 'text-[#eaddd7] group-hover:text-white'
+                                        : 'text-coffee-900 group-hover:text-rooster-600'
                                 }`}>
-                  Roost & Roast
-                </span>
+                                    Luis<span className="text-rooster-500">.</span>Dev
+                                </span>
+                                <span className={`text-[9px] uppercase tracking-[0.2em] font-bold transition-colors ${
+                                    scrolled || isOpen
+                                        ? 'text-white/40 group-hover:text-rooster-500'
+                                        : 'text-coffee-900/70 group-hover:text-rooster-600'
+                                        }`}>
+                                    Full Stack Developer
+                                </span>
                             </div>
-                        </motion.div>
+                        </a>
 
-                        {/* DESKTOP MENU */}
-                        <div className="hidden md:block">
-                            <div className="flex items-center space-x-1">
-                                {navLinks.map((link) => (
+                        {/* === MENU DESKTOP (CÁPSULA) === */}
+                        <div className="hidden lg:flex items-center">
+                            <nav className={`flex items-center gap-1 p-1.5 rounded-full transition-all duration-500 ${
+                                scrolled
+                                    ? "bg-transparent"
+                                    : "bg-[#1a1110]/60 backdrop-blur-md border border-white/10 shadow-lg"
+                            }`}>
+                                <ul className="flex items-center px-2">
+                                    {navLinks.map((link) => (
+                                        <li key={link.name}>
+                                            <a
+                                                href={link.href}
+                                                className="text-sm font-bold text-[#eaddd7]/80 hover:text-white hover:bg-white/5 px-4 py-2 rounded-full transition-all duration-200 block"
+                                            >
+                                                {link.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <div className="h-5 w-px bg-white/10 mx-1" />
+
+                                <div className="pl-2 pr-1">
                                     <a
-                                        key={link.name}
-                                        href={link.href}
-                                        onMouseEnter={() => setHoveredLink(link.name)}
-                                        onMouseLeave={() => setHoveredLink(null)}
-                                        className={`relative px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300 group ${
-                                            scrolled
-                                                ? 'text-white/80 hover:text-white hover:bg-white/5'
-                                                : 'text-coffee-900 hover:text-rooster-600 hover:bg-coffee-900/5'
-                                        }`}
+                                        href="#contato"
+                                        className="flex items-center gap-2 px-5 py-2 rounded-full bg-rooster-600 text-white text-sm font-bold shadow-lg shadow-rooster-900/20 hover:bg-rooster-500 hover:-translate-y-0.5 transition-all"
                                     >
-                                        <span className="relative z-10">{link.name}</span>
-                                        <AnimatePresence>
-                                            {hoveredLink === link.name && <LinkSteam />}
-                                        </AnimatePresence>
-                                        <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-rooster-500 transition-all duration-300 group-hover:w-1/2 opacity-0 group-hover:opacity-100" />
+                                        <Send size={16} strokeWidth={2.5} />
+                                        <span>Fale Comigo</span>
                                     </a>
-                                ))}
-
-                                <motion.a
-                                    href="#contato"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className={`ml-4 px-6 py-2.5 rounded-full text-sm font-black uppercase tracking-wider flex items-center gap-2 shadow-lg transition-all border ${
-                                        scrolled
-                                            ? 'bg-[#eaddd7] text-coffee-900 border-white/20 hover:bg-white'
-                                            : 'bg-coffee-900 text-[#eaddd7] border-coffee-800 hover:bg-rooster-600 hover:border-rooster-500'
-                                    }`}
-                                >
-                                    <Coffee size={16} strokeWidth={3} />
-                                    <span className="hidden lg:inline">Pedir</span>
-                                </motion.a>
-                            </div>
+                                </div>
+                            </nav>
                         </div>
 
-                        {/* MOBILE MENU BUTTON */}
-                        <div className="-mr-2 flex md:hidden relative z-50">
+                        {/* === MENU MOBILE TOGGLE === */}
+                        <div className="lg:hidden flex items-center z-50">
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
-                                className={`p-2 rounded-full transition-colors border-2 ${
+                                className={`p-2 rounded-full transition-all duration-300 ${
                                     isOpen
-                                        ? 'text-coffee-900 border-coffee-900 bg-[#eaddd7]'
-                                        : scrolled
-                                            ? 'text-white hover:bg-white/10 border-transparent'
-                                            : 'text-coffee-900 hover:bg-coffee-900/5 border-transparent'
+                                        ? 'bg-white/10 text-white rotate-90'
+                                        : 'text-[#eaddd7] hover:bg-white/5'
                                 }`}
+                                aria-label="Menu"
                             >
                                 {isOpen ? <X size={28} /> : <Menu size={28} />}
                             </button>
                         </div>
+
                     </div>
                 </div>
-            </motion.nav>
+            </header>
 
-            {/* MOBILE MENU FULL SCREEN (AGORA OTIMIZADO) */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: '100%' }} // Desliza da direita
-                        animate={{ opacity: 1, x: 0 }}      // Slide-in
-                        exit={{ opacity: 0, x: '100%' }}    // Slide-out e Fade
-                        transition={{ duration: 0.4, ease: "easeOut" }} // Transição rápida (tween)
-                        className="fixed inset-0 w-full h-full bg-[#f4f1ea] z-40 md:hidden flex flex-col justify-between overflow-y-auto" // Added overflow-y-auto
-                        style={{
-                            backgroundImage: 'url("https://www.transparenttextures.com/patterns/cardboard-flat.png")',
-                            backgroundAttachment: 'fixed'
-                        }}
-                    >
-                        <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-coffee-900 to-transparent" />
+            {/* === MOBILE OVERLAY (PERFORMANCE MÁXIMA) === */}
+            <div
+                className={`fixed inset-0 z-40 bg-[#120c0b] lg:hidden transition-opacity duration-300 ease-in-out ${
+                    isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+                }`}
+            >
+                {/* Elementos decorativos (Estáticos para não travar) */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-rooster-600/10 rounded-full blur-[80px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-coffee-800/20 rounded-full blur-[80px] pointer-events-none" />
 
-                        <div className="h-24"></div>
+                <div className="flex flex-col h-full justify-center items-center px-6 gap-8 relative z-10">
 
-                        <div className="flex-1 flex flex-col items-center justify-center space-y-6 p-6 relative z-10">
-                            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-rooster-500 mb-4">Cardápio</h2>
-
-                            {navLinks.map((link, i) => (
-                                <motion.a
-                                    key={link.name}
-                                    href={link.href}
-                                    initial={{ y: 40, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.1 + (i * 0.1), type: "spring" }}
-                                    onClick={() => setIsOpen(false)}
-                                    className="relative group text-center"
-                                >
-                   <span className="font-serif font-black text-4xl text-coffee-900 group-hover:text-rooster-600 transition-colors block mb-2">
-                     {link.name.split(' ')[0]}
-                   </span>
-                                    <span className="text-xs uppercase tracking-widest text-coffee-500 font-bold group-hover:text-rooster-400 transition-colors">
-                     {link.name.includes('(') ? link.name.match(/\((.*?)\)/)?.[1] : 'Ver mais'}
-                   </span>
-                                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-1 bg-rooster-500 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
-                                </motion.a>
-                            ))}
-                        </div>
-
-                        <div className="p-8 pb-12 text-center bg-coffee-100/50 border-t border-coffee-200 backdrop-blur-sm relative z-10">
+                    {/* Links Mobile */}
+                    <nav className="flex flex-col items-center gap-6">
+                        {navLinks.map((link) => (
                             <a
-                                href="#contato"
+                                key={link.name}
+                                href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="inline-block w-full max-w-xs py-4 bg-coffee-900 text-[#eaddd7] font-black uppercase tracking-widest rounded-xl shadow-xl hover:bg-rooster-600 hover:scale-105 transition-all"
+                                className="text-4xl font-serif font-bold text-[#eaddd7] hover:text-rooster-500 transition-colors tracking-tight"
                             >
-                                Fazer Pedido
+                                {link.name}
                             </a>
+                        ))}
+                    </nav>
 
-                            <div className="mt-8 flex justify-center gap-6 text-coffee-400">
-                                <span className="text-xs font-bold uppercase">Instagram</span>
-                                <span className="text-xs font-bold uppercase">LinkedIn</span>
-                                <span className="text-xs font-bold uppercase">GitHub</span>
-                            </div>
+                    <div className="w-16 h-1 bg-rooster-600/20 rounded-full" />
+
+                    {/* CTA Mobile */}
+                    <div className="flex flex-col gap-6 w-full max-w-xs text-center">
+                        <a
+                            href="#contato"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center justify-center w-full py-4 bg-rooster-600 text-white font-black uppercase tracking-widest rounded-xl shadow-xl active:scale-95 transition-all"
+                        >
+                            <Send size={20} className="mr-2" />
+                            Entre em Contato
+                        </a>
+
+                        <div className="flex justify-center gap-8 text-[#eaddd7]/40">
+                            <a href="#" className="hover:text-rooster-500 transition-colors"><Instagram size={24} /></a>
+                            <a href="#" className="hover:text-rooster-500 transition-colors"><Linkedin size={24} /></a>
+                            <a href="#" className="hover:text-rooster-500 transition-colors"><Github size={24} /></a>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
