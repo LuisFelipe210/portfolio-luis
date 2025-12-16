@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
         link: 'https://www.iangranja.adv.br/',
         tags: ['React', 'SEO', 'Performance'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'public/ian-cover.png'
+        imagePlaceholder: 'ian-cover.png'
     },
     {
         id: 'domino',
