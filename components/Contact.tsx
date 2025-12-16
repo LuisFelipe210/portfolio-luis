@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { PERSONAL_INFO } from '../constants';
-import { MapPin, Send, Mail, Terminal, Linkedin, Github, CheckCircle2, Phone } from 'lucide-react';
+import { MapPin, Mail, Terminal, Linkedin, Github, CheckCircle2, ArrowRight, Hash, MessageSquare } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from 'framer-motion';
 
@@ -19,187 +19,210 @@ const Contact: React.FC = () => {
         }, 2000);
     };
 
+    // Animações dos elementos técnicos de fundo
+    const techVariant = {
+        hidden: { opacity: 0, pathLength: 0 },
+        visible: { opacity: 0.3, pathLength: 1, transition: { duration: 1.5, ease: "easeInOut" } }
+    };
+
     return (
-        <section id="contato" className="py-20 lg:py-32 bg-[#120c0b] relative overflow-hidden">
+        <section id="contato" className="py-16 lg:py-24 bg-[#0a0504] relative overflow-hidden">
 
-            {/* === BACKGROUND EFFECTS === */}
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03] pointer-events-none" />
-            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-rooster-600/5 blur-[120px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-coffee-800/10 blur-[100px] rounded-full pointer-events-none translate-x-1/3 translate-y-1/3" />
+            {/* === BACKGROUND TÉCNICO === */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Grid */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]" />
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                {/* Detalhe diagonal */}
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-[#120c0b] transform -skew-x-12 translate-x-1/4 z-0 border-l border-white/5" />
 
-                    {/* === LADO ESQUERDO: INFOS === */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-8"
-                    >
-                        <div>
-                            <h2 className="text-rooster-500 font-bold tracking-widest uppercase text-sm mb-3 flex items-center gap-2">
-                                <span className="w-8 h-px bg-rooster-500"></span>
-                                Contato
+                {/* SVG Decorativo */}
+                <svg className="absolute top-10 left-0 w-40 h-40 text-rooster-500/20 opacity-50" viewBox="0 0 100 100">
+                    <motion.path d="M0,50 L100,50 M50,0 L50,100" stroke="currentColor" strokeWidth="0.5" variants={techVariant} initial="hidden" whileInView="visible" />
+                </svg>
+            </div>
+
+            <div className="max-w-6xl mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+                    {/* === LADO ESQUERDO: APRESENTAÇÃO === */}
+                    <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="relative"
+                        >
+                            <h2 className="text-rooster-500 font-mono tracking-[0.2em] uppercase text-xs mb-4 flex items-center gap-2 before:w-6 before:h-px before:bg-rooster-500">
+                                <Terminal size={14} /> Fale Comigo
                             </h2>
-                            <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
-                                Vamos construir algo <br />
-                                <span className="text-rooster-500">
-                                    incrível juntos?
-                                </span>
-                            </h3>
-                            <p className="text-lg text-white/60 leading-relaxed">
-                                Tem um projeto em mente ou precisa de um desenvolvedor full-stack para escalar seu negócio? Me chame no WhatsApp ou mande um e-mail.
-                            </p>
-                        </div>
 
-                        <div className="space-y-4">
-                            {/* Card WhatsApp (DESTAQUE COM ÍCONE FA) */}
+                            <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-[0.95] uppercase tracking-tight">
+                                Vamos <br />
+                                <span className="text-rooster-500">
+                                    Construir
+                                </span> <br />
+                                Algo Incrível.
+                            </h3>
+                            <p className="text-sm text-white/60 leading-relaxed font-light border-l border-rooster-900/50 pl-4 max-w-sm">
+                                Tem um projeto em mente ou precisa escalar seu negócio? Entre em contato para discutirmos a solução ideal.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="space-y-6 pt-6 border-t border-white/10"
+                        >
+                            {/* Card WhatsApp (Design Técnico, Texto Normal) */}
                             <a
                                 href="https://wa.me/5574988284631"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex items-center gap-4 p-4 rounded-2xl border border-rooster-500/30 bg-rooster-500/10 hover:bg-rooster-500/20 transition-all group cursor-pointer"
+                                className="group relative flex items-center justify-between p-4 bg-rooster-600 rounded-sm overflow-hidden shadow-lg transition-all hover:bg-rooster-500"
                             >
-                                <div className="h-12 w-12 bg-rooster-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-rooster-600/20 group-hover:scale-110 transition-transform">
-                                    {/* Ícone do Font Awesome aqui */}
-                                    <FaWhatsapp size={28} />
+                                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay"></div>
+
+                                <div className="relative z-10 flex items-center gap-4">
+                                    <div className="h-10 w-10 bg-white text-rooster-700 rounded-sm flex items-center justify-center shadow-inner relative">
+                                        <FaWhatsapp size={20} />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-mono uppercase text-rooster-200">Atendimento Direto</p>
+                                        <p className="text-lg font-bold text-white tracking-wide">WhatsApp</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-xs font-bold uppercase text-rooster-400 tracking-wider mb-1">WhatsApp (Rápido)</p>
-                                    <p className="text-lg font-bold text-white">(74) 98828-4631</p>
-                                </div>
+                                <ArrowRight className="text-white/70 group-hover:translate-x-1 transition-transform" size={18} />
                             </a>
 
-                            {/* Card Email */}
-                            <a href={`mailto:${PERSONAL_INFO.email}`} className="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:border-white/10 transition-all group">
-                                <div className="h-12 w-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80 group-hover:scale-110 transition-transform">
-                                    <Mail size={24} />
+                            {/* Info de Contato */}
+                            <div className="space-y-3">
+                                <div className="flex items-center gap-3 group">
+                                    <Mail size={16} className="text-rooster-500" />
+                                    <a href={`mailto:${PERSONAL_INFO.email}`} className="text-xs text-white/80 hover:text-rooster-400 transition-colors font-mono">
+                                        {PERSONAL_INFO.email}
+                                    </a>
                                 </div>
-                                <div>
-                                    <p className="text-xs font-bold uppercase text-white/40 tracking-wider mb-1">Email</p>
-                                    <p className="text-base font-bold text-white">{PERSONAL_INFO.email}</p>
-                                </div>
-                            </a>
-
-                            {/* Card Localização */}
-                            <div className="flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5">
-                                <div className="h-12 w-12 bg-white/10 rounded-xl flex items-center justify-center text-white/80">
-                                    <MapPin size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-bold uppercase text-white/40 tracking-wider mb-1">Base</p>
-                                    <p className="text-base font-bold text-white">Salvador, Bahia (Remoto)</p>
+                                <div className="flex items-center gap-3">
+                                    <MapPin size={16} className="text-rooster-500" />
+                                    <span className="text-xs text-white/80 font-mono">
+                                        Salvador, BA (Remoto)
+                                    </span>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
+                    </div>
 
-                        {/* Redes Sociais */}
-                        <div className="flex gap-4 pt-2">
-                            <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="p-3 rounded-full border border-white/10 text-white/60 hover:border-rooster-500 hover:text-rooster-500 transition-all hover:-translate-y-1 bg-white/5">
-                                <Linkedin size={20} />
-                            </a>
-                            <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="p-3 rounded-full border border-white/10 text-white/60 hover:border-rooster-500 hover:text-rooster-500 transition-all hover:-translate-y-1 bg-white/5">
-                                <Github size={20} />
-                            </a>
-                        </div>
-                    </motion.div>
+                    {/* === LADO DIREITO: FORMULÁRIO (Design Industrial, Texto Profissional) === */}
+                    <div className="lg:col-span-7 relative">
+                        {/* Ícones decorativos nos cantos */}
+                        <div className="absolute -top-3 -left-3 text-white/10"><Hash size={20}/></div>
+                        <div className="absolute -bottom-3 -right-3 text-white/10"><Hash size={20}/></div>
 
-                    {/* === LADO DIREITO: FORMULÁRIO === */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="bg-[#1f1615] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/50 relative overflow-hidden"
-                    >
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rooster-600 to-transparent opacity-50" />
-
-                        <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Mande uma mensagem</h3>
-                                <p className="text-sm text-white/50">Respondo rapidinho.</p>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.98 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="bg-[#130f0e] border border-white/10 p-6 sm:p-8 relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-[2px] before:bg-rooster-600"
+                        >
+                            <div className="mb-6 flex items-end justify-between border-b border-white/10 pb-4">
+                                <h3 className="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-rooster-500 rounded-full animate-pulse"/>
+                                    Mensagem
+                                </h3>
+                                <p className="text-[10px] font-mono text-white/30 hidden sm:block">
+                                    STATUS: ONLINE
+                                </p>
                             </div>
 
-                            <div className="space-y-4">
-                                <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium text-white/80 ml-1">Nome</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        required
-                                        placeholder="Seu nome"
-                                        className="w-full bg-black/20 border border-white/10 focus:border-rooster-500 focus:ring-1 focus:ring-rooster-500 rounded-xl px-4 py-3 text-white placeholder:text-white/20 outline-none transition-all"
-                                    />
-                                </div>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label htmlFor="whatsapp" className="text-sm font-medium text-white/80 ml-1">WhatsApp</label>
+                            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div className="space-y-1 group">
+                                        {/* Rótulo Técnico mas com texto claro */}
+                                        <label htmlFor="name" className="text-[10px] font-mono uppercase text-rooster-500/80 ml-1">Seu Nome</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            required
+                                            className="w-full bg-black/40 border-b border-white/10 focus:border-rooster-500 rounded-t-sm px-3 py-3 text-white placeholder:text-white/10 font-mono text-xs outline-none transition-all focus:bg-white/5"
+                                            placeholder="> Digite seu nome..."
+                                        />
+                                    </div>
+                                    <div className="space-y-1 group">
+                                        <label htmlFor="whatsapp" className="text-[10px] font-mono uppercase text-rooster-500/80 ml-1">WhatsApp / Telefone</label>
                                         <input
                                             type="tel"
                                             id="whatsapp"
-                                            placeholder="(DDD) 99999-9999"
-                                            className="w-full bg-black/20 border border-white/10 focus:border-rooster-500 focus:ring-1 focus:ring-rooster-500 rounded-xl px-4 py-3 text-white placeholder:text-white/20 outline-none transition-all"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-white/80 ml-1">Email</label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            required
-                                            placeholder="seu@email.com"
-                                            className="w-full bg-black/20 border border-white/10 focus:border-rooster-500 focus:ring-1 focus:ring-rooster-500 rounded-xl px-4 py-3 text-white placeholder:text-white/20 outline-none transition-all"
+                                            className="w-full bg-black/40 border-b border-white/10 focus:border-rooster-500 rounded-t-sm px-3 py-3 text-white placeholder:text-white/10 font-mono text-xs outline-none transition-all focus:bg-white/5"
+                                            placeholder="> (00) 00000-0000..."
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium text-white/80 ml-1">Como posso ajudar?</label>
+                                <div className="space-y-1 group">
+                                    <label htmlFor="email" className="text-[10px] font-mono uppercase text-rooster-500/80 ml-1">Seu E-mail</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        required
+                                        className="w-full bg-black/40 border-b border-white/10 focus:border-rooster-500 rounded-t-sm px-3 py-3 text-white placeholder:text-white/10 font-mono text-xs outline-none transition-all focus:bg-white/5"
+                                        placeholder="> exemplo@email.com..."
+                                    />
+                                </div>
+
+                                <div className="space-y-1 group">
+                                    <label htmlFor="message" className="text-[10px] font-mono uppercase text-rooster-500/80 ml-1">Sobre o Projeto</label>
                                     <textarea
                                         id="message"
-                                        rows={4}
+                                        rows={3}
                                         required
-                                        placeholder="Descreva seu projeto..."
-                                        className="w-full bg-black/20 border border-white/10 focus:border-rooster-500 focus:ring-1 focus:ring-rooster-500 rounded-xl px-4 py-3 text-white placeholder:text-white/20 outline-none transition-all resize-none"
+                                        className="w-full bg-black/40 border-b border-white/10 focus:border-rooster-500 rounded-t-sm px-3 py-3 text-white placeholder:text-white/10 font-mono text-xs outline-none transition-all resize-none focus:bg-white/5"
+                                        placeholder="> Como posso ajudar?..."
                                     ></textarea>
                                 </div>
-                            </div>
 
-                            <button
-                                type="submit"
-                                disabled={formStatus !== 'idle'}
-                                className={`w-full py-4 rounded-xl font-bold text-base uppercase tracking-wide shadow-lg transition-all transform active:scale-[0.98] flex items-center justify-center gap-2
-                                    ${formStatus === 'sent'
-                                    ? 'bg-green-600 text-white hover:bg-green-700'
-                                    : 'bg-rooster-600 text-white hover:bg-rooster-500 hover:shadow-rooster-500/20'
-                                }`}
-                            >
-                                {formStatus === 'idle' && (
-                                    <>Enviar <Send size={18} /></>
-                                )}
-                                {formStatus === 'sending' && (
-                                    <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Enviando...</>
-                                )}
-                                {formStatus === 'sent' && (
-                                    <>Enviado! <CheckCircle2 size={18} /></>
-                                )}
-                            </button>
-                        </form>
-                    </motion.div>
+                                {/* Botão "Switch" Mantido */}
+                                <button
+                                    type="submit"
+                                    disabled={formStatus !== 'idle'}
+                                    className={`relative w-full py-3 mt-2 font-bold text-xs uppercase tracking-[0.2em] transition-all transform active:translate-y-1 border overflow-hidden group
+                                        ${formStatus === 'sent'
+                                        ? 'bg-green-900/20 border-green-500 text-green-500'
+                                        : 'bg-rooster-900/20 border-rooster-600 text-rooster-500 hover:bg-rooster-600 hover:text-white'
+                                    }`}
+                                >
+                                    <span className={`absolute inset-0 bg-rooster-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ${formStatus !== 'idle' ? 'hidden' : ''}`}></span>
+
+                                    <span className="relative z-10 flex items-center justify-center gap-3">
+                                        {formStatus === 'idle' && (
+                                            <>Enviar Mensagem <MessageSquare size={14} /></>
+                                        )}
+                                        {formStatus === 'sending' && (
+                                            <span className="animate-pulse">Enviando...</span>
+                                        )}
+                                        {formStatus === 'sent' && (
+                                            <>Enviado com Sucesso <CheckCircle2 size={14} /></>
+                                        )}
+                                    </span>
+                                </button>
+                            </form>
+                        </motion.div>
+                    </div>
 
                 </div>
 
-                {/* Footer */}
-                <div className="mt-20 pt-8 border-t border-white/5 text-center flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
-                    <p>
-                        &copy; {new Date().getFullYear()} Luis Felipe. Todos os direitos reservados.
-                    </p>
-                    <div className="flex items-center gap-2 text-xs opacity-70 hover:opacity-100 transition-opacity">
-                        <Terminal size={14} />
-                        <span>Feito com Next.js & Tailwind</span>
+                {/* Footer Técnico */}
+                <div className="mt-16 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-white/20 text-[10px] font-mono uppercase tracking-widest">
+                    <div className="flex items-center gap-4">
+                        <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="hover:text-rooster-500 transition-colors"><Linkedin size={14} /></a>
+                        <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="hover:text-rooster-500 transition-colors"><Github size={14} /></a>
+                        <span className="h-px w-6 bg-white/10"></span>
+                        <p>&copy; {new Date().getFullYear()} Luis Felipe. Todos os direitos reservados.</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-green-500/50 rounded-full animate-pulse"></span>
+                        <span>Disponível</span>
                     </div>
                 </div>
             </div>
