@@ -14,13 +14,26 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
-// --- COMPONENTE: ProjectModal (Mantido igual) ---
+// --- COMPONENTE: ProjectModal ---
 interface ProjectModalProps {
     project: Project;
     onClose: () => void;
 }
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+
+    // --- NOVO: Fechar com ESC ---
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
+
     return (
         <motion.div
             className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-6 backdrop-blur-md bg-black/80"
@@ -220,13 +233,12 @@ const Projects: React.FC = () => {
                             swiper.navigation.init();
                             swiper.navigation.update();
                         }}
-                        // AQUI ESTÁ A MUDANÇA NAS CORES
                         style={{
                             // @ts-ignore
-                            "--swiper-pagination-color": "#e34234", // Cor da bolinha ativa (Vermelho Galo)
-                            "--swiper-pagination-bullet-inactive-color": "#ffffff", // Cor das inativas (Branco)
-                            "--swiper-pagination-bullet-inactive-opacity": "0.3", // Opacidade das inativas
-                            "--swiper-pagination-bullet-size": "10px", // Tamanho da bolinha
+                            "--swiper-pagination-color": "#e34234",
+                            "--swiper-pagination-bullet-inactive-color": "#ffffff",
+                            "--swiper-pagination-bullet-inactive-opacity": "0.3",
+                            "--swiper-pagination-bullet-size": "10px",
                             "--swiper-pagination-bullet-horizontal-gap": "6px"
                         }}
                         breakpoints={{
