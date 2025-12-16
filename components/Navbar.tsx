@@ -26,8 +26,8 @@ const Navbar: React.FC = () => {
     // LINKS PROFISSIONAIS
     const navLinks = [
         { name: 'Sobre', href: '#sobre' },
-        { name: 'Habilidades', href: '#skills' },
         { name: 'Projetos', href: '#projetos' },
+        { name: 'Habilidades', href: '#skills' },
         { name: 'Contato', href: '#contato' },
     ];
 
@@ -59,18 +59,10 @@ const Navbar: React.FC = () => {
                             </div>
 
                             <div className="flex flex-col">
-                                <span className={`font-serif font-bold text-xl tracking-wide leading-none transition-colors ${
-                                    scrolled || isOpen
-                                        ? 'text-[#eaddd7] group-hover:text-white'
-                                        : 'text-coffee-900 group-hover:text-rooster-600'
-                                }`}>
+                                <span className="font-serif font-bold text-xl tracking-wide leading-none text-[#eaddd7] group-hover:text-white transition-colors">
                                     Luis<span className="text-rooster-500">.</span>Dev
                                 </span>
-                                <span className={`text-[9px] uppercase tracking-[0.2em] font-bold transition-colors ${
-                                    scrolled || isOpen
-                                        ? 'text-white/40 group-hover:text-rooster-500'
-                                        : 'text-coffee-900/70 group-hover:text-rooster-600'
-                                        }`}>
+                                <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-white/40 group-hover:text-rooster-500 transition-colors">
                                     Full Stack Developer
                                 </span>
                             </div>

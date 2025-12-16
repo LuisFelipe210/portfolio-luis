@@ -1,134 +1,101 @@
 "use client"
 
 import React, { Suspense } from 'react';
-import { PERSONAL_INFO, RADAR_DATA } from '../constants';
-import { ArrowRight, Github, Linkedin, Mail, Code2, Zap } from 'lucide-react';
-import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { PERSONAL_INFO } from '../constants';
+// Importando a estrela da festa
 import CoffeeScene from './CoffeeScene';
 
 const Hero: React.FC = () => {
     return (
-        <section id="sobre" className="min-h-screen flex items-center pt-20 pb-12 overflow-hidden relative bg-coffee-900">
+        <section className="relative min-h-screen flex flex-col justify-end pb-12 px-6 sm:px-12 overflow-hidden bg-[#0f0a08]">
 
-            {/* BACKGROUND 3D (Se quiser manter a cena do café, descomente) */}
-            <Suspense fallback={<div className="absolute inset-0 bg-coffee-50" />}>
-                <CoffeeScene />
-            </Suspense>
+            {/* === AQUI TÁ A TUA ANIMAÇÃO, PORRA === */}
+            {/* Botei opacity-60 pro texto na frente ficar legível, mas a animação brilhar no fundo */}
+            <div className="absolute inset-0 z-0 opacity-60">
+                <Suspense fallback={null}>
+                    <CoffeeScene />
+                </Suspense>
+            </div>
 
-            {/* Overlay gradiente pra garantir leitura */}
-            <div className="absolute inset-0 bg-gradient-to-r from-coffee-50/95 via-coffee-50/80 to-coffee-50/30 z-0 pointer-events-none" />
+            {/* Overlay sutil na base pra o texto não sumir se passar um grão na frente */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0f0a08] via-transparent to-transparent pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-                <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+            <div className="max-w-[1600px] w-full mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
 
-                    {/* Text Content */}
+                {/* LADO ESQUERDO: Introdução Técnica */}
+                <div className="lg:col-span-4 mb-8 lg:mb-0">
                     <motion.div
-                        className="w-full sm:text-center lg:col-span-7 lg:text-left flex flex-col items-center lg:items-start order-1"
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="space-y-6"
                     >
-                        <motion.div
-                            className="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-md text-rooster-600 text-xs font-bold uppercase tracking-wide mb-6 border border-rooster-100 shadow-sm"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                        >
-                            <Code2 size={16} className="mr-2" />
-                            Full Stack Developer
-                        </motion.div>
+                        {/* Linha Fina Decorativa */}
+                        <div className="w-12 h-[2px] bg-rooster-600 mb-6" />
 
-                        <h1 className="text-4xl tracking-tight font-extrabold text-coffee-900 sm:text-5xl md:text-6xl font-serif mb-4 leading-tight drop-shadow-sm text-center lg:text-left">
-                            <span className="block">Performance e</span>
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rooster-600 to-coffee-800 pb-2">
-                                Código Limpo
-                            </span>
-                        </h1>
+                        <div className="font-mono-code text-sm text-white/50 space-y-1 bg-[#0f0a08]/50 backdrop-blur-sm p-2 rounded-lg w-fit border border-white/5">
+                            <p>LOCATION: SALVADOR, BA</p>
+                            <p>ROLE: FULL STACK DEV</p>
+                            <p>STATUS: <span className="text-green-500 animate-pulse">●</span> AVAILABLE</p>
+                        </div>
 
-                        <p className="mt-3 text-base sm:text-lg text-coffee-800 font-medium max-w-2xl mx-auto lg:mx-0 leading-relaxed bg-white/30 backdrop-blur-sm p-4 rounded-xl border border-white/50 text-center lg:text-left">
-                            Sou <span className="font-bold text-rooster-600">{PERSONAL_INFO.name}</span>.
-                            Crio soluções digitais robustas, rápidas e focadas na experiência do usuário.
-                            Transformo ideias complexas em software de alta qualidade.
+                        <p className="text-white/80 text-lg leading-relaxed max-w-md drop-shadow-md">
+                            Engenharia de software com foco em <strong className="text-white">robustez</strong> e <strong className="text-white">estética</strong>.
+                            Transformo cafeína em código limpo, escalável e memorável.
                         </p>
 
-                        <motion.div
-                            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5 }}
-                        >
-                            <a
-                                href="#projetos"
-                                className="group inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-xl text-white bg-coffee-900 hover:bg-coffee-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                                <span className="relative flex items-center">
-                                    Ver Meus Projetos
-                                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                                </span>
-                            </a>
-
-                            <div className="flex items-center justify-center gap-4">
-                                {[
-                                    { icon: Github, href: PERSONAL_INFO.github },
-                                    { icon: Linkedin, href: PERSONAL_INFO.linkedin },
-                                    { icon: Mail, href: `mailto:${PERSONAL_INFO.email}` }
-                                ].map((item, idx) => (
-                                    <a
-                                        key={idx}
-                                        href={item.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="p-3 bg-white/80 backdrop-blur rounded-xl text-coffee-900 hover:text-rooster-500 shadow-md border border-white transition-all hover:-translate-y-1"
-                                    >
-                                        <item.icon size={22} />
-                                    </a>
-                                ))}
-                            </div>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Chart Content (Mantive o original que tava bom, só ajustei texto) */}
-                    <motion.div
-                        className="mt-12 lg:mt-0 lg:col-span-5 relative order-1 lg:order-2"
-                        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <div className="relative mx-auto w-full max-w-md bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-4 sm:p-6 border border-coffee-200">
-                            <div className="absolute -top-6 -right-6 z-30">
-                                <div className="bg-rooster-500 text-white p-3 rounded-2xl shadow-lg rotate-12 relative z-20">
-                                    <Zap size={28} fill="currentColor" />
-                                </div>
-                            </div>
-
-                            <h3 className="text-center text-sm font-bold text-coffee-800 font-serif mb-4 border-b border-coffee-100 pb-2">
-                                Stack Tecnológica
-                            </h3>
-
-                            <div className="h-[240px] md:h-[300px] w-full">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <RadarChart cx="50%" cy="50%" outerRadius="75%" data={RADAR_DATA}>
-                                        <PolarGrid stroke="#e0cec7" strokeDasharray="3 3" />
-                                        <PolarAngleAxis dataKey="subject" tick={{ fill: '#4e3a33', fontSize: 11, fontWeight: 600, fontFamily: 'Merriweather' }} />
-                                        <PolarRadiusAxis angle={30} domain={[0, 150]} tick={false} axisLine={false} />
-                                        <Radar
-                                            name="Luis"
-                                            dataKey="A"
-                                            stroke="#e34234"
-                                            strokeWidth={3}
-                                            fill="#e34234"
-                                            fillOpacity={0.3}
-                                        />
-                                    </RadarChart>
-                                </ResponsiveContainer>
-                            </div>
+                        <div className="flex gap-4 pt-4">
+                            {[
+                                { icon: Github, link: PERSONAL_INFO.github },
+                                { icon: Linkedin, link: PERSONAL_INFO.linkedin },
+                                { icon: Mail, link: `mailto:${PERSONAL_INFO.email}` }
+                            ].map((item, i) => (
+                                <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-rooster-500 transition-colors p-2 hover:bg-white/5 rounded-full">
+                                    <item.icon size={24} />
+                                </a>
+                            ))}
                         </div>
                     </motion.div>
+                </div>
 
+                {/* CENTRO/DIREITA: Título Gigante Assímetrico */}
+                <div className="lg:col-span-8 flex flex-col items-start lg:items-end pointer-events-none">
+                    <motion.h1
+                        className="font-serif-display text-6xl sm:text-8xl md:text-9xl font-medium text-[#eaddd7] leading-[0.9] tracking-tight mix-blend-screen drop-shadow-2xl"
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <span className="block italic text-white/30 text-4xl sm:text-6xl mb-2 font-light">The</span>
+                        Roost & <br />
+                        <span className="text-rooster-600">Roast.</span>
+                    </motion.h1>
+
+                    <motion.div
+                        className="mt-8 flex items-center gap-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                    >
+                        <span className="font-mono-code text-xs text-rooster-600 uppercase tracking-widest bg-[#0f0a08]/80 px-2 py-1 rounded">
+                            Luis Felipe Portfolio &copy; {new Date().getFullYear()}
+                        </span>
+                        <div className="w-24 h-[1px] bg-white/20" />
+                    </motion.div>
                 </div>
             </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+            >
+                <span className="text-[10px] font-mono-code uppercase tracking-widest">Scroll</span>
+                <ArrowDown size={16} />
+            </motion.div>
         </section>
     );
 };

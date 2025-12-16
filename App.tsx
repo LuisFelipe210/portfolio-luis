@@ -1,44 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
 import Contact from './components/Contact';
-import Preloader from './components/Preloader';
+import ProjectDetails from './components/ProjectDetails';
+
+// Componente apenas com o miolo da Home
+const Home = () => (
+    <main>
+        <Hero />
+        <div className="relative z-10">
+            <Projects />
+            <Skills />
+            <Contact />
+        </div>
+    </main>
+);
 
 function App() {
-    const [loading, setLoading] = useState(true);
-
-    // Trava o scroll enquanto carrega pra não bugar a entrada
-    useEffect(() => {
-        if (loading) {
-            document.body.style.overflow = 'hidden';
-            // Scrolla pro topo pra garantir
-            window.scrollTo(0, 0);
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-    }, [loading]);
-
     return (
-        <div className="min-h-screen bg-coffee-50 font-sans selection:bg-rooster-500 selection:text-white">
-            <AnimatePresence mode='wait'>
-                {loading && <Preloader onComplete={() => setLoading(false)} />}
-            </AnimatePresence>
+        <Router>
+            <div className="relative bg-[#0f0a08] min-h-screen selection:bg-[#e34234] selection:text-white">
+                {/* Textura de ruído (opcional, mantendo se você usa) */}
+                <div className="noise-overlay" />
 
-            {!loading && (
-                <>
-                    <Navbar />
-                    <main>
-                        <Hero />
-                        <Skills />
-                        <Projects />
-                    </main>
-                    <Contact />
-                </>
-            )}
-        </div>
+                {/* === AQUI: Navbar fixa para TODAS as páginas === */}
+                <Navbar />
+
+                <Routes>
+                    {/* Rota da Página Principal */}
+                    <Route path="/" element={<Home />} />
+
+                    {/* Rota de Detalhes */}
+                    <Route path="/projetos/:id" element={<ProjectDetails />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
