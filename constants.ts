@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
         link: 'https://brandcriativo.com.br/',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'assets/brand-criativo-cover.png',
+        imagePlaceholder: 'public/brand-criativo-cover.png',
     },
     {
         id: 'hello-foto',
@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
         link: 'https://www.hellofotografia.com.br/',
         tags: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'assets/hello-fotografia-cover.png',
+        imagePlaceholder: 'public/hello-fotografia-cover.png',
     },
     {
         id: 'emanuel-silvestre',
@@ -40,7 +40,7 @@ export const PROJECTS: Project[] = [
         link: 'https://www.emanuelsilvestre.adv.br/',
         tags: ['Landing Page', 'Conversion', 'Mobile First'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'assets/emanuel-cover.png'
+        imagePlaceholder: 'public/emanuel-cover.png'
     },
 
     {
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
         link: 'https://www.iangranja.adv.br/',
         tags: ['React', 'SEO', 'Performance'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'assets/ian-cover.png'
+        imagePlaceholder: 'public/ian-cover.png'
     },
     {
         id: 'domino',
