@@ -1,12 +1,17 @@
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+
+// Componentes
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import ProjectDetails from './components/ProjectDetails';
+import Preloader from './components/Preloader'; // Certifique-se que este arquivo existe
 
-// Componente apenas com o miolo da Home
+// Componente Home separado para organização
 const Home = () => (
     <main>
         <Hero />
@@ -19,24 +24,48 @@ const Home = () => (
 );
 
 function App() {
+    const [loading, setLoading] = useState(true);
+
+    // Lógica de Trava de Scroll do Preloader
+    useEffect(() => {
+        if (loading) {
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [loading]);
+
     return (
-        <Router>
-            <div className="relative bg-[#0f0a08] min-h-screen selection:bg-[#e34234] selection:text-white">
-                {/* Textura de ruído (opcional, mantendo se você usa) */}
-                <div className="noise-overlay" />
+        <div className="relative bg-[#0f0a08] min-h-screen selection:bg-[#e34234] selection:text-white">
 
-                {/* === AQUI: Navbar fixa para TODAS as páginas === */}
-                <Navbar />
+            {/* === PRELOADER === */}
+            <AnimatePresence mode='wait'>
+                {loading && (
+                    <Preloader onComplete={() => setLoading(false)} />
+                )}
+            </AnimatePresence>
 
-                <Routes>
-                    {/* Rota da Página Principal */}
-                    <Route path="/" element={<Home />} />
+            {/* === CONTEÚDO DO SITE (Só carrega depois do loading) === */}
+            {!loading && (
+                <Router>
 
-                    {/* Rota de Detalhes */}
-                    <Route path="/projetos/:id" element={<ProjectDetails />} />
-                </Routes>
-            </div>
-        </Router>
+                    {/* Textura de Ruído Global */}
+                    <div className="noise-overlay" />
+
+                    {/* Navbar Fixa Global */}
+                    <Navbar />
+
+                    <Routes>
+                        {/* Rota Principal */}
+                        <Route path="/" element={<Home />} />
+
+                        {/* Rota de Detalhes do Projeto */}
+                        <Route path="/projetos/:id" element={<ProjectDetails />} />
+                    </Routes>
+                </Router>
+            )}
+        </div>
     );
 }
 
