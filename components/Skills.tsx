@@ -2,8 +2,18 @@
 
 import React from 'react';
 import { SKILLS } from '../constants';
-import { Code2, Database, TerminalSquare, BrainCircuit, Cpu, Layout, Server, Braces } from 'lucide-react';
+import { Code2, Database, TerminalSquare, BrainCircuit, Cpu, Layout, Server, Braces, Settings2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// Mesma paleta Industrial dos outros componentes
+const COFFEE_MODERN = {
+    bgDark: "#0F0B09",
+    bgPanel: "#1A1410",
+    accentGold: "#D4A373",
+    textMain: "#EAE0D5",
+    textMuted: "#8D7B68",
+    glassBorder: "rgba(212, 163, 115, 0.15)"
+};
 
 const getIcon = (idx: number) => {
     const icons = [Layout, Server, Database, TerminalSquare, BrainCircuit, Braces];
@@ -12,54 +22,52 @@ const getIcon = (idx: number) => {
 
 const Skills: React.FC = () => {
     return (
-        // MUDANÇA 1: Cor de fundo base um pouco diferente (#130e0c) para quebrar a monotonia
-        <section id="skills" className="py-24 bg-[#130e0c] relative overflow-hidden">
+        <section id="skills" className="py-24 relative overflow-hidden" style={{ backgroundColor: COFFEE_MODERN.bgDark }}>
 
-            {/* MUDANÇA 2: Spotlight Central (Luz de fundo) */}
-            {/* Cria um brilho avermelhado muito sutil no centro, dando volume 3D */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#e34234] opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
-
-            {/* MUDANÇA 3: Grid Técnico de Fundo (Blueprint Pattern) */}
-            {/* Essas linhas finas no fundo dão a cara de "Engenharia" e tiram o aspecto liso */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
-
-            {/* Background Noise (Mantido para textura tátil) */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+            {/* === BACKGROUND === */}
+            {/* Grid Decorativo igual ao Hero/Projects */}
+            <div
+                className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+                style={{
+                    backgroundImage: `linear-gradient(${COFFEE_MODERN.accentGold} 1px, transparent 1px), linear-gradient(90deg, ${COFFEE_MODERN.accentGold} 1px, transparent 1px)`,
+                    backgroundSize: '100px 100px'
+                }}
             />
 
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Vignette para profundidade */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F0B09] via-transparent to-[#0F0B09] pointer-events-none" />
 
-                {/* --- HEADER TÉCNICO --- */}
-                <div className="border-b border-white/10 pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 relative">
-                    {/* Detalhe de luz no header */}
-                    <div className="absolute bottom-0 left-0 w-32 h-px bg-gradient-to-r from-rooster-600 to-transparent" />
+            <div className="max-w-[1400px] mx-auto px-6 sm:px-12 relative z-10">
 
+                {/* --- HEADER TECH --- */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-[#D4A373]/20 pb-8">
                     <div>
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="flex items-center gap-2 mb-2"
+                            className="flex items-center gap-2 mb-3 text-[#D4A373]"
                         >
-                            <div className="w-2 h-2 bg-rooster-600 rounded-full animate-pulse" />
-                            <span className="font-mono text-xs text-rooster-600 uppercase tracking-widest">System_Specs v2.0</span>
+                            <Settings2 size={16} />
+                            <span className="font-mono text-xs uppercase tracking-[0.2em]">
+                                System Architecture
+                            </span>
                         </motion.div>
-                        <h2 className="text-5xl md:text-7xl font-black text-[#eaddd7] uppercase tracking-tighter leading-none">
-                            Arsenal <br />
-                            <span className="text-white/30">Técnico</span>
+                        <h2 className="text-4xl md:text-6xl font-sans font-black text-white tracking-tighter leading-none">
+                            TECHNICAL <br />
+                            <span className="text-[#8D7B68]">CAPABILITIES.</span>
                         </h2>
                     </div>
 
-                    <div className="font-mono text-xs text-white/50 text-right hidden md:block">
-                        <p>CAPACITY: 100%</p>
-                        <p>STATUS: OPTIMIZED</p>
-                        <p>/// SEC_02</p>
+                    <div className="font-mono text-xs text-right hidden md:block opacity-60 space-y-1 text-[#8D7B68]">
+                        <p>KERNEL: STABLE v3.0</p>
+                        <p>MEMORY: OPTIMIZED</p>
+                        <p>STATUS: DEPLOY READY</p>
                     </div>
                 </div>
 
-                {/* --- GRID ESTRUTURAL --- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/10 shadow-2xl bg-[#0f0a08]/50 backdrop-blur-sm">
+                {/* --- GRID DE CARDS (Estilo Hardware) --- */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
                     {SKILLS.map((skillGroup, idx) => {
                         const Icon = getIcon(idx);
@@ -70,70 +78,78 @@ const Skills: React.FC = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group relative border-r border-b border-white/10 p-8 min-h-[320px] flex flex-col justify-between hover:bg-[#1a1110] transition-colors duration-500"
+                                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                // Card mais quadrado e escuro
+                                className="group relative p-8 rounded-sm border bg-[#1A1410] transition-all duration-300 hover:bg-[#221a15]"
+                                style={{
+                                    borderColor: COFFEE_MODERN.glassBorder
+                                }}
                             >
-                                {/* Crosshair */}
-                                <div className="absolute -top-[5px] -left-[5px] text-white/40">
-                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4.5 0V9M0 4.5H9" stroke="currentColor" strokeWidth="1"/>
-                                    </svg>
-                                </div>
+                                {/* Marcador de canto decorativo */}
+                                <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#D4A373]/30 group-hover:border-[#D4A373] transition-colors" />
 
-                                {/* Header Card */}
-                                <div className="relative z-10">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <span className="font-mono text-xs text-white/40">0{idx + 1}</span>
-                                        <Icon className="text-white/30 group-hover:text-rooster-500 transition-colors duration-300" size={28} strokeWidth={1.5} />
+                                {/* Header do Card */}
+                                <div className="relative z-10 mb-8 flex justify-between items-start">
+                                    <div>
+                                        <span className="font-mono text-[10px] mb-2 block text-[#8D7B68] tracking-widest">
+                                            MODULE_0{idx + 1}
+                                        </span>
+                                        <h3 className="text-xl font-sans font-bold tracking-tight text-[#EAE0D5] group-hover:text-white transition-colors">
+                                            {skillGroup.category.split(' ')[0]}
+                                        </h3>
                                     </div>
-
-                                    <h3 className="text-xl font-bold text-[#eaddd7] uppercase tracking-wide mb-1 group-hover:translate-x-1 transition-transform duration-300">
-                                        {skillGroup.category.split(' ')[0]}
-                                    </h3>
-                                    <div className="h-0.5 w-8 bg-rooster-600 opacity-0 group-hover:opacity-100 group-hover:w-16 transition-all duration-500" />
+                                    <div
+                                        className="p-2 rounded bg-[#0F0B09] border border-[#D4A373]/20 group-hover:border-[#D4A373] transition-colors text-[#D4A373]"
+                                    >
+                                        <Icon size={20} strokeWidth={1.5} />
+                                    </div>
                                 </div>
 
-                                {/* Lista */}
-                                <ul className="space-y-3 relative z-10 mt-8">
+                                {/* Lista de Skills */}
+                                <ul className="space-y-3 relative z-10">
                                     {skillGroup.items.map((tech) => (
                                         <li key={tech} className="flex items-center gap-3 group/item">
-                                            <div className="w-1 h-1 bg-white/40 group-hover/item:bg-rooster-500 transition-colors" />
-                                            <span className="text-sm font-mono text-white/60 group-hover/item:text-white transition-colors">
+                                            {/* Seta estilo terminal > */}
+                                            <span className="text-[#8D7B68] text-xs font-mono group-hover/item:text-[#D4A373] transition-colors">
+                                                &gt;
+                                            </span>
+                                            <span
+                                                className="text-sm font-mono transition-colors text-[#8D7B68] group-hover/item:text-[#EAE0D5]"
+                                            >
                                                 {tech}
                                             </span>
                                         </li>
                                     ))}
                                 </ul>
 
-                                {/* Spotlight BG (Hover Interno) */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                                {/* Barcode Decor */}
-                                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-40 transition-opacity duration-700">
-                                    <div className="flex gap-0.5 h-4 items-end">
-                                        {[...Array(10)].map((_, i) => (
-                                            <div key={i} className="w-0.5 bg-white" style={{ height: `${Math.random() * 100}%` }} />
-                                        ))}
-                                    </div>
-                                </div>
+                                {/* Barra de progresso decorativa no fundo */}
+                                <div className="absolute bottom-0 left-0 h-[2px] bg-[#D4A373] w-0 group-hover:w-full transition-all duration-500 ease-out opacity-50" />
                             </motion.div>
                         );
                     })}
                 </div>
 
-                {/* --- BARRA DE MÍDIA INFERIOR --- */}
-                <div className="mt-12 border-t border-b border-white/10 py-4 overflow-hidden relative">
-                    {/* Gradiente lateral pra suavizar as pontas (Vignette) */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#130e0c] via-transparent to-[#130e0c] z-10 pointer-events-none" />
+                {/* --- TICKER DE DADOS (Data Stream) --- */}
+                <div className="mt-20 border-y border-[#D4A373]/10 py-4 overflow-hidden relative bg-[#1A1410]/50 backdrop-blur-sm">
+                    {/* Sombras laterais */}
+                    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0F0B09] to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0F0B09] to-transparent z-10 pointer-events-none" />
 
                     <motion.div
-                        className="flex gap-12 whitespace-nowrap"
+                        className="flex gap-16 whitespace-nowrap"
                         animate={{ x: [0, -1000] }}
                         transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
                     >
                         {[...Array(4)].map((_, i) => (
-                            <div key={i} className="flex gap-12 text-[#eaddd7]/50 font-mono text-sm uppercase tracking-[0.3em]">
-                                <span>React.js</span> <span>Next.js</span> <span>TypeScript</span> <span>Node.js</span> <span>Docker</span> <span>AWS</span> <span>Tailwind</span> <span>PostgreSQL</span> <span>GraphQL</span>
+                            <div key={i} className="flex gap-12 font-mono text-xs uppercase tracking-[0.3em] text-[#8D7B68]">
+                                <span className="flex items-center gap-2"><span className="w-2 h-2 bg-[#D4A373] rounded-full animate-pulse"/> REACT.JS</span>
+                                <span>NEXT.JS</span>
+                                <span>TYPESCRIPT</span>
+                                <span className="flex items-center gap-2"><span className="w-2 h-2 bg-[#D4A373] rounded-full animate-pulse"/> NODE.JS</span>
+                                <span>DOCKER</span>
+                                <span>AWS</span>
+                                <span>TAILWIND</span>
+                                <span>POSTGRESQL</span>
                             </div>
                         ))}
                     </motion.div>

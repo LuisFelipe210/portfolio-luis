@@ -1,110 +1,195 @@
 "use client"
 
 import React, { Suspense } from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../constants';
 import CoffeeScene from './CoffeeScene';
 
+const COFFEE_MODERN = {
+    bgDark: "#0F0B09",
+    bgPanel: "#1A1410",
+    accentGold: "#D4A373",
+    textMain: "#EAE0D5",
+    textMuted: "#8D7B68",
+    glassBorder: "rgba(212, 163, 115, 0.15)"
+};
+
 const Hero: React.FC = () => {
     return (
-        // MUDANÇA 1: min-h-[100dvh] previne pulos em navegadores mobile
-        <section className="relative min-h-[100dvh] flex flex-col justify-end pb-20 sm:pb-12 px-6 sm:px-12 overflow-hidden bg-[#0f0a08]">
-
-            {/* === BACKGROUND ANIMAÇÃO === */}
-            <div className="absolute inset-0 z-0 opacity-60">
+        <section
+            className="relative min-h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-20 lg:py-0"
+            style={{ backgroundColor: COFFEE_MODERN.bgDark }}
+        >
+            {/* === BACKGROUND === */}
+            <div className="absolute inset-0 z-0 opacity-60 lg:opacity-90 mix-blend-screen pointer-events-none">
                 <Suspense fallback={null}>
                     <CoffeeScene />
                 </Suspense>
             </div>
 
-            {/* MUDANÇA 2: Gradiente mais forte no mobile para garantir leitura do texto */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#0f0a08] via-[#0f0a08]/40 to-transparent pointer-events-none" />
+            <div
+                className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+                style={{
+                    backgroundImage: `linear-gradient(${COFFEE_MODERN.accentGold} 1px, transparent 1px), linear-gradient(90deg, ${COFFEE_MODERN.accentGold} 1px, transparent 1px)`,
+                    backgroundSize: 'clamp(50px, 10vw, 100px) clamp(50px, 10vw, 100px)'
+                }}
+            />
 
-            {/* Container Principal */}
-            <div className="max-w-[1600px] w-full mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-end">
+            <div className="absolute inset-0 z-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#0F0B09] via-[#0F0B09]/40 to-[#0F0B09] pointer-events-none" />
 
-                {/* MUDANÇA 3: Ordem visual no Mobile.
-                   Usamos 'order-2 lg:order-1' para que no celular o texto técnico fique ABAIXO ou ACIMA conforme sua preferência.
-                   Neste design, deixei a Intro PRIMEIRO (padrão) mas ajustei os tamanhos.
-                */}
+            {/* === CONTEÚDO === */}
+            <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center">
 
-                {/* LADO ESQUERDO: Introdução Técnica */}
-                <div className="lg:col-span-4 mb-4 lg:mb-0 order-1">
+                {/* COLUNA ESQUERDA: TEXTO PESADO */}
+                <div className="flex flex-col justify-center space-y-6 lg:space-y-8 order-2 lg:order-1">
+
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="flex items-center gap-3 w-fit px-3 py-1.5 lg:px-4 lg:py-2 rounded-full border backdrop-blur-md"
+                        style={{
+                            backgroundColor: 'rgba(26, 20, 16, 0.6)',
+                            borderColor: COFFEE_MODERN.glassBorder
+                        }}
+                    >
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span className="text-[10px] lg:text-xs font-mono tracking-widest text-[#D4A373]">
+                            SYSTEM ONLINE
+                        </span>
+                    </motion.div>
+
+                    <div className="space-y-1 lg:space-y-0">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter text-white"
+                        >
+                            ROBUST
+                            <br />
+                            <span style={{ color: COFFEE_MODERN.accentGold }}>FLAVOR.</span>
+                        </motion.h1>
+
+                        <motion.h2
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                            className="font-sans font-bold text-3xl sm:text-5xl lg:text-6xl leading-[0.9] tracking-tighter text-[#4A3B32]"
+                        >
+                            CLEAN CODE.
+                        </motion.h2>
+                    </div>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className="text-base lg:text-xl max-w-lg leading-relaxed font-light"
+                        style={{ color: COFFEE_MODERN.textMuted }}
+                    >
+                        Desenvolvo soluções Full Stack com a mesma precisão de um barista experiente. Performance pura, sem código sujo.
+                    </motion.p>
+
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="space-y-4 sm:space-y-6"
+                        transition={{ delay: 0.6 }}
+                        className="flex flex-wrap gap-4 pt-2 lg:pt-4"
                     >
-                        {/* Linha Decorativa */}
-                        <div className="w-12 h-[2px] bg-rooster-600 mb-4 sm:mb-6" />
-
-                        {/* Box de Status - Mais legível no mobile */}
-                        <div className="font-mono-code text-[10px] sm:text-sm text-white/70 space-y-1 bg-[#0f0a08]/80 backdrop-blur-md p-3 rounded-lg w-fit border border-white/10 shadow-lg">
-                            <p>LOCATION: SALVADOR, BA</p>
-                            <p>ROLE: FULL STACK DEV</p>
-                            <p>STATUS: <span className="text-green-500 animate-pulse">●</span> AVAILABLE</p>
-                        </div>
-
-                        <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-sm lg:max-w-md drop-shadow-md font-light">
-                            Engenharia de software com foco em <strong className="text-white font-medium">robustez</strong> e <strong className="text-white font-medium">estética</strong>.
-                            Transformo cafeína em código limpo, escalável e memorável.
-                        </p>
-
-                        {/* Ícones maiores no touch */}
-                        <div className="flex gap-5 pt-2">
+                        <a
+                            href={`mailto:${PERSONAL_INFO.email}`}
+                            className="flex-1 sm:flex-none text-center px-6 py-3 lg:px-8 lg:py-4 bg-[#D4A373] hover:bg-[#C29060] text-[#0F0B09] font-bold tracking-wide rounded-sm transition-all transform hover:-translate-y-1"
+                        >
+                            HIRE ME
+                        </a>
+                        <div className="flex gap-6 items-center px-2 lg:px-4">
                             {[
-                                { icon: Github, link: PERSONAL_INFO.github },
-                                { icon: Linkedin, link: PERSONAL_INFO.linkedin },
-                                { icon: Mail, link: `mailto:${PERSONAL_INFO.email}` }
+                                { Icon: Github, link: PERSONAL_INFO.github },
+                                { Icon: Linkedin, link: PERSONAL_INFO.linkedin }
                             ].map((item, i) => (
-                                <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-rooster-500 transition-colors p-1 active:scale-95">
-                                    <item.icon size={22} className="sm:w-6 sm:h-6" />
+                                <a key={i} href={item.link} target="_blank" rel="noreferrer" className="text-[#8D7B68] hover:text-[#D4A373] transition-colors">
+                                    <item.Icon size={24} />
                                 </a>
                             ))}
                         </div>
                     </motion.div>
                 </div>
 
-                {/* CENTRO/DIREITA: Título Gigante */}
-                {/* order-2 garante que fique na posição certa se decidirmos mudar o layout depois, mas aqui mantém o fluxo */}
-                <div className="lg:col-span-8 flex flex-col items-start lg:items-end pointer-events-none order-2 pb-4 lg:pb-0">
-                    <motion.h1
-                        // MUDANÇA 4: Tipografia Responsiva Agressiva
-                        // text-5xl no celular (cabe na tela), text-9xl no desktop
-                        className="font-serif-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-medium text-[#eaddd7] leading-[0.9] tracking-tight mix-blend-screen drop-shadow-2xl"
-                        initial={{ opacity: 0, x: 50 }} // Menos movimento no eixo X para mobile
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        <span className="block italic text-white/30 text-2xl sm:text-4xl sm:text-6xl mb-1 sm:mb-2 font-light">The</span>
-                        Roost & <br />
-                        <span className="text-rooster-600">Roast.</span>
-                    </motion.h1>
-
+                {/* COLUNA DIREITA: CARD DE SKILLS */}
+                <div className="relative flex flex-col justify-center items-center lg:items-end order-1 lg:order-2 pointer-events-none">
                     <motion.div
-                        className="mt-4 sm:mt-8 flex items-center gap-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="relative z-10 p-6 lg:p-8 rounded-xl border border-[#D4A373]/20 backdrop-blur-xl bg-[#0F0B09]/60 max-w-[320px] lg:max-w-sm w-full space-y-4 lg:space-y-6 shadow-2xl"
                     >
-                        <span className="font-mono-code text-[10px] sm:text-xs text-rooster-600 uppercase tracking-widest bg-[#0f0a08]/80 px-2 py-1 rounded border border-rooster-600/20">
-                            Luis Felipe &copy; {new Date().getFullYear()}
-                        </span>
-                        <div className="w-12 sm:w-24 h-[1px] bg-white/20" />
+                        <div className="flex items-center justify-between border-b border-[#D4A373]/10 pb-3 lg:pb-4">
+                            <div className="flex gap-1.5">
+                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
+                            </div>
+                            <Code2 size={16} className="text-[#8D7B68]" />
+                        </div>
+
+                        <div className="space-y-4 font-mono text-xs lg:text-sm">
+                            <div className="flex justify-between items-center text-[#EAE0D5]">
+                                <span>Stack</span>
+                                <span className="text-[#D4A373]">Full Strength</span>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div>
+                                    <div className="flex justify-between text-[10px] lg:text-xs text-[#8D7B68] mb-1.5">
+                                        <span>Frontend (React/Next)</span>
+                                        <span>98%</span>
+                                    </div>
+                                    <div className="h-1 w-full bg-[#1A1410] rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            animate={{ width: "98%" }}
+                                            transition={{ duration: 1.5, ease: "circOut" }}
+                                            className="h-full bg-[#D4A373]"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex justify-between text-[10px] lg:text-xs text-[#8D7B68] mb-1.5">
+                                        <span>Backend (Node/Python)</span>
+                                        <span>92%</span>
+                                    </div>
+                                    <div className="h-1 w-full bg-[#1A1410] rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            animate={{ width: "92%" }}
+                                            transition={{ duration: 1.5, delay: 0.2, ease: "circOut" }}
+                                            className="h-full bg-[#A4907C]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="pt-3 lg:pt-4 border-t border-[#D4A373]/10 text-[#8D7B68] text-[10px] lg:text-xs leading-relaxed">
+                                <p>// Current Focus:</p>
+                                <p className="text-[#EAE0D5]">Scalable architectures[cite: 7, 17].</p>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* Scroll Indicator - Ajustado para não sobrepor conteúdo em telas pequenas */}
+            {/* Scroll Indicator */}
             <motion.div
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
+                className="absolute bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#8D7B68]"
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 2.5 }}
             >
-                <span className="text-[9px] sm:text-[10px] font-mono-code uppercase tracking-widest">Scroll</span>
-                <ArrowDown size={14} className="sm:w-4 sm:h-4" />
+                <div className="w-[1px] h-8 lg:h-12 bg-gradient-to-b from-transparent via-[#D4A373] to-transparent opacity-50" />
             </motion.div>
         </section>
     );

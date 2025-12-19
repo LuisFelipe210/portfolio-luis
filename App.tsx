@@ -37,7 +37,7 @@ function App() {
     }, [loading]);
 
     return (
-        <div className="relative bg-[#0f0a08] min-h-screen selection:bg-[#e34234] selection:text-white">
+        <div className="relative bg-[#0f0a08] min-h-screen selection:bg-[#D4A373] selection:text-[#0F0B09]">
 
             {/* === PRELOADER === */}
             <AnimatePresence mode='wait'>
@@ -49,9 +49,6 @@ function App() {
             {/* === CONTEÚDO DO SITE (Só carrega depois do loading) === */}
             {!loading && (
                 <Router>
-
-                    {/* Textura de Ruído Global */}
-                    <div className="noise-overlay" />
 
                     {/* Navbar Fixa Global */}
                     <Navbar />
