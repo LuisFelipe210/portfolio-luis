@@ -17,21 +17,21 @@ export const PERSONAL_INFO = {
 export const PROJECTS: Project[] = [
     {
         id: 'brand-criativo',
-        title: 'Brand Criativo - Identidade & Web',
+        title: 'Brand Criativo - Identidade & Web (Em Andamento)',
         description: '"Desenvolvimento da nova casa digital da Brand Criativo. O objetivo era fugir do minimalismo padrão e criar uma experiência memorável que gritasse \'autoridade\'. Utilizei uma abordagem brutalista com tipografia pesada e contrastes altos para retenção de atenção. O site não é apenas um portfólio, é uma ferramenta de conversão com arquitetura de informação focada em transformar visitantes em leads qualificados.',
-        link: 'https://brandcriativo.com.br/',
+        link: 'https://brandcriativo.vercel.app/',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: '/brand-criativo-cover.png',
+        imagePlaceholder: '/brand.jpeg',
     },
     {
-        id: 'hello-foto',
-        title: 'Hellô Borges Fotografia',
-        description: 'Plataforma completa de gestão para estúdio fotográfico. Sistema de portfólio, blog e área do cliente exclusiva para seleção e aprovação de fotos.',
-        link: 'https://www.hellofotografia.com.br/',
-        tags: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
+        id: 'nutri-jamilly',
+        title: 'Dra. Jamilly Mayane',
+        description: 'Site institucional focado em SEO e conversão para nutricionista clínica. Design responsivo de alta performance com interface amigável para agendamento de consultas online.',
+        link: 'https://www.nutrijamilly.com.br/',
+        tags: ['Next.js', 'React', 'Tailwind CSS', 'SEO'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: '/hello-fotografia-cover.png',
+        imagePlaceholder: '/nutri.jpeg',
     },
     {
         id: 'emanuel-silvestre',
@@ -71,6 +71,26 @@ export const PROJECTS: Project[] = [
         tags: ['NestJS', 'React', 'PostgreSQL'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/5/800/600'
+    },
+    {
+        id: 'dashboard-ml-previsao',
+        title: 'Dashboard de Análise e Previsão de Jogadores',
+        description: 'Solução completa de Machine Learning integrando backend em FastAPI e frontend em React + Plotly. Permite upload de planilhas e visualizações interativas das previsões de desempenho.',
+        link: '#',
+        repoLink: 'https://github.com/LuisFelipe210',
+        tags: ['FastAPI', 'React', 'Python', 'Machine Learning', 'Docker'],
+        category: ProjectCategory.ACADEMIC,
+        imagePlaceholder: 'https://picsum.photos/id/111/800/600'
+    },
+    {
+        id: 'gerenciador-de-pedidos',
+        title: 'Gerenciador de Pedidos',
+        description: 'Plataforma full-stack para venda de produtos físicos e agendamento de serviços técnicos em um fluxo único. Arquitetura robusta com Node.js, Prisma, MySQL, Docker e frontend em React 19. Implementa controle de acessos (RBAC), segurança avançada e automação de jobs operacionais.',
+        link: '#',
+        repoLink: 'https://github.com/LuisFelipe210',
+        tags: ['React', 'Node.js', 'Prisma', 'MySQL', 'Docker'],
+        category: ProjectCategory.PROFESSIONAL,
+        imagePlaceholder: 'https://picsum.photos/id/42/800/600'
     }
 ];
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Terminal } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import RoosterLogo from './RoosterLogo';
+import { useTranslation } from 'react-i18next';
 
 const COFFEE_MODERN = {
     bgDark: "#0F0B09",
@@ -15,6 +16,7 @@ const COFFEE_MODERN = {
 };
 
 const Navbar: React.FC = () => {
+    const { t, i18n } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
@@ -32,17 +34,14 @@ const Navbar: React.FC = () => {
         document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     }, [isOpen]);
 
-    // Função de clique unificada para tratar Home e Âncoras
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         setIsOpen(false);
 
         if (href === '/') {
             e.preventDefault();
             if (isHomePage) {
-                // Se já estiver na home, apenas sobe pro topo
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // Se estiver em outra página, navega pra home e o useEffect de scroll faz o resto
                 navigate('/');
             }
             return;
@@ -54,10 +53,15 @@ const Navbar: React.FC = () => {
         }
     };
 
+    const toggleLanguage = () => {
+        const newLang = i18n.language === 'pt' ? 'en' : 'pt';
+        i18n.changeLanguage(newLang);
+    };
+
     const navLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Projetos', href: '#projetos' },
-        { name: 'Habilidades', href: '#skills' },
+        { name: t('nav.home'), href: '/' },
+        { name: t('nav.projects'), href: '#projetos' },
+        { name: t('nav.skills'), href: '#skills' },
     ];
 
     return (
@@ -120,24 +124,39 @@ const Navbar: React.FC = () => {
                             </ul>
 
                             <div className="h-4 w-[1px] bg-[#D4A373]/20" />
+                            
+                            <button 
+                                onClick={toggleLanguage}
+                                className="text-[11px] font-mono font-bold tracking-widest text-[#EAE0D5] hover:text-[#D4A373] transition-colors"
+                            >
+                                {i18n.language === 'pt' ? 'EN' : 'PT'}
+                            </button>
 
                             <a
                                 href="#contato"
                                 onClick={(e) => handleNavClick(e, '#contato')}
                                 className="px-5 py-2 bg-[#D4A373] text-[#0F0B09] text-[11px] font-bold uppercase tracking-widest hover:bg-white transition-all active:scale-95"
                             >
-                                Get_In_Touch
+                                {t('nav.contact')}
                             </a>
                         </nav>
 
-                        {/* === MOBILE TOGGLE === */}
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden z-50 p-2 text-[#D4A373]"
-                            aria-label="Menu"
-                        >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
+                        {/* === MOBILE TOGGLE & LANG === */}
+                        <div className="flex items-center gap-4 lg:hidden z-50">
+                            <button 
+                                onClick={toggleLanguage}
+                                className="text-[11px] font-mono font-bold tracking-widest text-[#EAE0D5] hover:text-[#D4A373] transition-colors"
+                            >
+                                {i18n.language === 'pt' ? 'EN' : 'PT'}
+                            </button>
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="p-2 text-[#D4A373]"
+                                aria-label="Menu"
+                            >
+                                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            </button>
+                        </div>
 
                     </div>
                 </div>
@@ -178,7 +197,7 @@ const Navbar: React.FC = () => {
                             onClick={(e) => handleNavClick(e, '#contato')}
                             className="w-full py-4 bg-[#D4A373] text-[#0F0B09] font-bold text-center uppercase tracking-widest text-xs"
                         >
-                            Start_Conversation
+                            {t('nav.contact')}
                         </a>
                     </div>
                 </div>

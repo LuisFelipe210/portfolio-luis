@@ -5,6 +5,7 @@ import { PROJECTS } from '../constants';
 import { ArrowUpRight, Coffee, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const COFFEE_MODERN = {
     bgDark: "#0F0B09",
@@ -16,6 +17,7 @@ const COFFEE_MODERN = {
 };
 
 const ProjectListItem = ({ project, index, isHovered, onHover }: any) => {
+    const { t } = useTranslation();
     return (
         <div
             className="block group relative z-10"
@@ -46,7 +48,7 @@ const ProjectListItem = ({ project, index, isHovered, onHover }: any) => {
                             <h3 className={`text-xl md:text-4xl font-sans font-bold tracking-tight transition-colors duration-300 ${
                                 isHovered ? `text-[#EAE0D5]` : `text-[#8D7B68] group-hover:text-[#EAE0D5]`
                             }`}>
-                                {project.title}
+                                {t(`projects.${project.id}.title`, { defaultValue: project.title })}
                             </h3>
                         </div>
 
@@ -68,7 +70,7 @@ const ProjectListItem = ({ project, index, isHovered, onHover }: any) => {
                                 className="lg:hidden pl-8 pr-4"
                             >
                                 <p className="text-sm text-[#8D7B68] leading-relaxed mb-4">
-                                    {project.description}
+                                    {t(`projects.${project.id}.description`, { defaultValue: project.description })}
                                 </p>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.slice(0, 3).map((tag: string) => (
@@ -81,7 +83,7 @@ const ProjectListItem = ({ project, index, isHovered, onHover }: any) => {
                                     to={`/projetos/${project.id}`}
                                     className="text-[10px] font-mono uppercase tracking-widest text-[#D4A373] flex items-center gap-2"
                                 >
-                                    Ver Detalhes <ArrowUpRight size={12} />
+                                    {t('projects_section.view_project', { defaultValue: 'Ver Detalhes' })} <ArrowUpRight size={12} />
                                 </Link>
                             </motion.div>
                         )}
@@ -93,6 +95,7 @@ const ProjectListItem = ({ project, index, isHovered, onHover }: any) => {
 };
 
 const Projects: React.FC = () => {
+    const { t } = useTranslation();
     const [hoveredProject, setHoveredProject] = useState<string | null>(PROJECTS[0].id);
     const activeProject = PROJECTS.find(p => p.id === hoveredProject) || PROJECTS[0];
 
@@ -129,7 +132,7 @@ const Projects: React.FC = () => {
                             <span className="font-mono text-[10px] uppercase tracking-[0.2em]">/Select/Work</span>
                         </div>
                         <h2 className="text-4xl lg:text-6xl font-sans font-black text-white tracking-tighter leading-none">
-                            SELECTED <span className="text-[#8D7B68]">WORK.</span>
+                            {t('projects_section.title').split(' ')[0]} <span className="text-[#8D7B68]">{t('projects_section.title').split(' ')[1]}</span>
                         </h2>
                     </div>
                 </div>
@@ -166,7 +169,7 @@ const Projects: React.FC = () => {
                                         </div>
                                     </div>
                                     <p className="text-lg text-[#EAE0D5] font-light leading-relaxed">
-                                        {activeProject.description}
+                                        {t(`projects.${activeProject.id}.description`, { defaultValue: activeProject.description })}
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {activeProject.tags.map((tag: string) => (
@@ -179,7 +182,7 @@ const Projects: React.FC = () => {
                                         to={`/projetos/${activeProject.id}`}
                                         className="group w-full flex items-center justify-between bg-[#D4A373] text-[#0F0B09] px-6 py-4 font-bold uppercase tracking-[0.2em] text-xs transition-all hover:bg-white"
                                     >
-                                        <span>Case Details</span>
+                                        <span>{t('projects_section.view_project', { defaultValue: 'Case Details' })}</span>
                                         <ArrowUpRight size={18} />
                                     </Link>
                                 </div>

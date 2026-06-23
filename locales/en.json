@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "system_online": "SYSTEM ONLINE",
+    "title_1": "ROBUST",
+    "title_2": "FLAVOR.",
+    "subtitle": "CLEAN CODE.",
+    "description": "Developing Full Stack solutions with the precision of an expert barista. Pure performance, no dirty code.",
+    "hire_me": "HIRE ME",
+    "stack": "Stack",
+    "full_strength": "Full Strength",
+    "frontend": "Frontend (React/Next)",
+    "backend": "Backend (Node/Python)",
+    "current_focus": "// Current Focus:",
+    "focus_detail": "Scalable architectures[cite: 7, 17]."
+  },
+  "constants": {
+    "role": "Fullstack Web Developer",
+    "education": {
+      "degree": "Associate Degree in Systems Analysis and Development",
+      "period": "Expected Graduation: Dec 2027"
+    },
+    "summary": "Web Developer focused on performance and scalability. Practical experience building modern applications using the JavaScript ecosystem (React, Node.js) and TypeScript. Passionate about clean code and efficient software architecture."
+  },
+  "projects": {
+    "brand-criativo": {
+      "title": "Brand Criativo - Identity & Web (In Progress)",
+      "description": "Development of Brand Criativo's new digital home. The goal was to break away from standard minimalism and create a memorable experience that screams 'authority'. I used a brutalist approach with heavy typography and high contrast for attention retention. The site is not just a portfolio, it's a conversion tool with information architecture focused on turning visitors into qualified leads."
+    },
+    "nutri-jamilly": {
+      "title": "Dr. Jamilly Mayane",
+      "description": "Institutional site focused on SEO and conversion for a clinical nutritionist. High-performance responsive design with a user-friendly interface for online consultation scheduling."
+    },
+    "emanuel-silvestre": {
+      "title": "Emanuel Silvestre Law Firm",
+      "description": "Strategic Landing Page for acquiring social security clients. Direct WhatsApp integration and mobile optimization."
+    },
+    "ian-granja": {
+      "title": "Ian Granja Law Firm",
+      "description": "High-performance institutional site focused on local SEO and lead conversion. Optimized design to convey authority and trust."
+    },
+    "domino": {
+      "title": "Multiplayer Domino",
+      "description": "Real-time game application using WebSockets for low-latency bidirectional communication."
+    },
+    "asset-maintenance": {
+      "title": "Asset Management",
+      "description": "Fullstack system for preventive equipment maintenance control. Administrative dashboard and reports."
+    },
+    "dashboard-ml-previsao": {
+      "title": "Player Analysis and Prediction Dashboard",
+      "description": "Complete Machine Learning solution integrating FastAPI backend and React + Plotly frontend. Allows spreadsheet upload and interactive visualizations of performance predictions."
+    }
+  },
+  "skills_section": {
+    "title": "MY SKILLS",
+    "subtitle": "PRECISION TOOLS",
+    "Frontend Moderno": "Modern Frontend",
+    "Backend & API": "Backend & API",
+    "Banco de Dados": "Database",
+    "DevOps & Tools": "DevOps & Tools"
+  },
+  "projects_section": {
+    "title": "MY PROJECTS",
+    "subtitle": "MY PROJECTS",
+    "professional": "PROFESSIONAL PROJECTS",
+    "academic": "ACADEMIC PROJECTS",
+    "view_project": "VIEW PROJECT"
+  },
+  "contact": {
+    "connection_request": "/ Connection_Request",
+    "title": "INITIATE PROJECT.",
+    "description": "Have a technical challenge or need to scale your operation? Let's compile a robust solution. No small talk, straight to the code.",
+    "direct_link": "Direct Link",
+    "start_chat": "Start Chat",
+    "email": "Send me an e-mail",
+    "location": "Worldwide :: Remote_Mode",
+    "github": "Check my GitHub",
+    "linkedin": "Connect on LinkedIn",
+    "system_ready": "SYSTEM READY",
+    "send_message": "SEND MESSAGE",
+    "name_id": "Name_ID",
+    "name_placeholder": "Insert name...",
+    "contact_no": "Contact_No",
+    "contact_placeholder": "+55...",
+    "email_address": "Email_Address",
+    "email_placeholder": "user@domain.com",
+    "payload_message": "Payload / Message",
+    "message_placeholder": "Describe requirements...",
+    "transmit": "TRANSMIT DATA",
+    "processing": "PROCESSING...",
+    "received": "DATA RECEIVED",
+    "open_contracts": "Open for Contracts"
+  },
+  "project_details": {
+    "return": "Return_To_Index",
+    "case_study": "Case Study",
+    "client": "Client_ID",
+    "deployment": "Deployment",
+    "tech_stack": "Tech_Stack",
+    "launch": "Launch Project",
+    "source": "Source Code",
+    "project_log": "Project_Log",
+    "executive_summary": "Executive Summary:",
+    "visual_assets": "Visual_Assets",
+    "focus_title": "Focus:",
+    "focus_desc": "High performance and scalability implementation.",
+    "dev_desc": "The development prioritized delivering a fluid experience, using modern design patterns and a robust architecture."
+  }
+}

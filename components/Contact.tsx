@@ -5,6 +5,7 @@ import { PERSONAL_INFO } from '../constants';
 import { MapPin, Mail, Linkedin, Github, CheckCircle2, ArrowRight, MessageSquare, Send, Terminal } from 'lucide-react';
 import { FaWhatsapp } from "react-icons/fa";
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Paleta Industrial Espresso (Consistente com os outros componentes)
 const COFFEE_MODERN = {
@@ -17,6 +18,7 @@ const COFFEE_MODERN = {
 };
 
 const Contact: React.FC = () => {
+    const { t } = useTranslation();
     const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -57,19 +59,19 @@ const Contact: React.FC = () => {
                             <div className="flex items-center gap-2 mb-6">
                                 <Terminal size={16} className="text-[#D4A373]" />
                                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8D7B68]">
-                                    / Connection_Request
+                                    {t('contact.connection_request')}
                                 </span>
                             </div>
 
                             <h3 className="text-5xl lg:text-7xl font-sans font-black leading-[0.9] mb-6 text-white tracking-tighter">
-                                INITIATE <br />
+                                {t('contact.title').split(' ')[0]} <br />
                                 <span className="text-[#D4A373]">
-                                    PROJECT.
+                                    {t('contact.title').split(' ').slice(1).join(' ')}
                                 </span>
                             </h3>
 
                             <p className="text-lg leading-relaxed max-w-sm font-light text-[#8D7B68]">
-                                Tem um desafio técnico ou precisa escalar sua operação? Vamos compilar uma solução robusta. Sem conversa fiada, direto ao código.
+                                {t('contact.description')}
                             </p>
                         </motion.div>
 
@@ -95,8 +97,8 @@ const Contact: React.FC = () => {
                                         <FaWhatsapp size={20} />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">Direct Link</p>
-                                        <p className="text-lg font-bold text-[#EAE0D5] group-hover:text-white transition-colors">Start Chat</p>
+                                        <p className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">{t('contact.direct_link')}</p>
+                                        <p className="text-lg font-bold text-[#EAE0D5] group-hover:text-white transition-colors">{t('contact.start_chat')}</p>
                                     </div>
                                 </div>
                                 <ArrowRight className="transition-transform group-hover:translate-x-1 text-[#D4A373]" size={20} />
@@ -115,7 +117,7 @@ const Contact: React.FC = () => {
                                     <span className="text-[#D4A373]">&gt;</span>
                                     <MapPin size={16} className="text-[#8D7B68]" />
                                     <span className="text-[#8D7B68]">
-                                        Salvador, BA :: Remote_Mode
+                                        {t('contact.location')}
                                     </span>
                                 </div>
                             </div>
@@ -140,56 +142,56 @@ const Contact: React.FC = () => {
                             <div className="mb-8 flex items-center justify-between pb-4 border-b border-[#D4A373]/10">
                                 <h3 className="text-xl font-sans font-bold text-[#EAE0D5] flex items-center gap-2">
                                     <MessageSquare size={18} className="text-[#D4A373]" />
-                                    SEND MESSAGE
+                                    {t('contact.send_message')}
                                 </h3>
                                 <div className="flex items-center gap-2 font-mono text-[10px] text-[#8D7B68]">
                                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"/>
-                                    <span>SYSTEM READY</span>
+                                    <span>{t('contact.system_ready')}</span>
                                 </div>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div className="space-y-2 group">
-                                        <label htmlFor="name" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">Name_ID</label>
+                                        <label htmlFor="name" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">{t('contact.name_id')}</label>
                                         <input
                                             type="text"
                                             id="name"
                                             required
                                             className="w-full bg-[#0F0B09] border border-[#D4A373]/20 focus:border-[#D4A373] rounded-sm px-4 py-3 text-[#EAE0D5] placeholder:text-[#8D7B68]/30 font-mono text-sm outline-none transition-all"
-                                            placeholder="Insert name..."
+                                            placeholder={t('contact.name_placeholder')}
                                         />
                                     </div>
                                     <div className="space-y-2 group">
-                                        <label htmlFor="whatsapp" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">Contact_No</label>
+                                        <label htmlFor="whatsapp" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">{t('contact.contact_no')}</label>
                                         <input
                                             type="tel"
                                             id="whatsapp"
                                             className="w-full bg-[#0F0B09] border border-[#D4A373]/20 focus:border-[#D4A373] rounded-sm px-4 py-3 text-[#EAE0D5] placeholder:text-[#8D7B68]/30 font-mono text-sm outline-none transition-all"
-                                            placeholder="+55..."
+                                            placeholder={t('contact.contact_placeholder')}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2 group">
-                                    <label htmlFor="email" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">Email_Address</label>
+                                    <label htmlFor="email" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">{t('contact.email_address')}</label>
                                     <input
                                         type="email"
                                         id="email"
                                         required
                                         className="w-full bg-[#0F0B09] border border-[#D4A373]/20 focus:border-[#D4A373] rounded-sm px-4 py-3 text-[#EAE0D5] placeholder:text-[#8D7B68]/30 font-mono text-sm outline-none transition-all"
-                                        placeholder="user@domain.com"
+                                        placeholder={t('contact.email_placeholder')}
                                     />
                                 </div>
 
                                 <div className="space-y-2 group">
-                                    <label htmlFor="message" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">Payload / Message</label>
+                                    <label htmlFor="message" className="text-[10px] font-mono uppercase tracking-widest text-[#8D7B68]">{t('contact.payload_message')}</label>
                                     <textarea
                                         id="message"
                                         rows={4}
                                         required
                                         className="w-full bg-[#0F0B09] border border-[#D4A373]/20 focus:border-[#D4A373] rounded-sm px-4 py-3 text-[#EAE0D5] placeholder:text-[#8D7B68]/30 font-mono text-sm outline-none transition-all resize-none"
-                                        placeholder="Describe requirements..."
+                                        placeholder={t('contact.message_placeholder')}
                                     ></textarea>
                                 </div>
 
@@ -205,13 +207,13 @@ const Contact: React.FC = () => {
                                 >
                                     <span className="relative z-10 flex items-center justify-center gap-3">
                                         {formStatus === 'idle' && (
-                                            <>TRANSMIT DATA <Send size={16} /></>
+                                            <>{t('contact.transmit')} <Send size={16} /></>
                                         )}
                                         {formStatus === 'sending' && (
-                                            <span className="animate-pulse">PROCESSING...</span>
+                                            <span className="animate-pulse">{t('contact.processing')}</span>
                                         )}
                                         {formStatus === 'sent' && (
-                                            <>DATA RECEIVED <CheckCircle2 size={16} /></>
+                                            <>{t('contact.received')} <CheckCircle2 size={16} /></>
                                         )}
                                     </span>
                                 </button>
@@ -231,7 +233,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                        <span>Open for Contracts</span>
+                        <span>{t('contact.open_contracts')}</span>
                     </div>
                 </div>
             </div>

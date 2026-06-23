@@ -5,6 +5,7 @@ import { Github, Linkedin, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../constants';
 import CoffeeScene from './CoffeeScene';
+import { useTranslation } from 'react-i18next';
 
 const COFFEE_MODERN = {
     bgDark: "#0F0B09",
@@ -16,6 +17,7 @@ const COFFEE_MODERN = {
 };
 
 const Hero: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <section
             className="relative min-h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-20 lg:py-0"
@@ -59,7 +61,7 @@ const Hero: React.FC = () => {
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
                         <span className="text-[10px] lg:text-xs font-mono tracking-widest text-[#D4A373]">
-                            SYSTEM ONLINE
+                            {t('hero.system_online')}
                         </span>
                     </motion.div>
 
@@ -70,9 +72,9 @@ const Hero: React.FC = () => {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter text-white"
                         >
-                            ROBUST
+                            {t('hero.title_1')}
                             <br />
-                            <span style={{ color: COFFEE_MODERN.accentGold }}>FLAVOR.</span>
+                            <span style={{ color: COFFEE_MODERN.accentGold }}>{t('hero.title_2')}</span>
                         </motion.h1>
 
                         <motion.h2
@@ -81,7 +83,7 @@ const Hero: React.FC = () => {
                             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
                             className="font-sans font-bold text-3xl sm:text-5xl lg:text-6xl leading-[0.9] tracking-tighter text-[#4A3B32]"
                         >
-                            CLEAN CODE.
+                            {t('hero.subtitle')}
                         </motion.h2>
                     </div>
 
@@ -92,7 +94,7 @@ const Hero: React.FC = () => {
                         className="text-base lg:text-xl max-w-lg leading-relaxed font-light"
                         style={{ color: COFFEE_MODERN.textMuted }}
                     >
-                        Desenvolvo soluções Full Stack com a mesma precisão de um barista experiente. Performance pura, sem código sujo.
+                        {t('hero.description')}
                     </motion.p>
 
                     <motion.div
@@ -105,7 +107,7 @@ const Hero: React.FC = () => {
                             href={`mailto:${PERSONAL_INFO.email}`}
                             className="flex-1 sm:flex-none text-center px-6 py-3 lg:px-8 lg:py-4 bg-[#D4A373] hover:bg-[#C29060] text-[#0F0B09] font-bold tracking-wide rounded-sm transition-all transform hover:-translate-y-1"
                         >
-                            HIRE ME
+                            {t('hero.hire_me')}
                         </a>
                         <div className="flex gap-6 items-center px-2 lg:px-4">
                             {[
@@ -139,14 +141,14 @@ const Hero: React.FC = () => {
 
                         <div className="space-y-4 font-mono text-xs lg:text-sm">
                             <div className="flex justify-between items-center text-[#EAE0D5]">
-                                <span>Stack</span>
-                                <span className="text-[#D4A373]">Full Strength</span>
+                                <span>{t('hero.stack')}</span>
+                                <span className="text-[#D4A373]">{t('hero.full_strength')}</span>
                             </div>
 
                             <div className="space-y-4">
                                 <div>
                                     <div className="flex justify-between text-[10px] lg:text-xs text-[#8D7B68] mb-1.5">
-                                        <span>Frontend (React/Next)</span>
+                                        <span>{t('hero.frontend')}</span>
                                         <span>98%</span>
                                     </div>
                                     <div className="h-1 w-full bg-[#1A1410] rounded-full overflow-hidden">
@@ -160,7 +162,7 @@ const Hero: React.FC = () => {
                                 </div>
                                 <div>
                                     <div className="flex justify-between text-[10px] lg:text-xs text-[#8D7B68] mb-1.5">
-                                        <span>Backend (Node/Python)</span>
+                                        <span>{t('hero.backend')}</span>
                                         <span>92%</span>
                                     </div>
                                     <div className="h-1 w-full bg-[#1A1410] rounded-full overflow-hidden">
@@ -175,8 +177,8 @@ const Hero: React.FC = () => {
                             </div>
 
                             <div className="pt-3 lg:pt-4 border-t border-[#D4A373]/10 text-[#8D7B68] text-[10px] lg:text-xs leading-relaxed">
-                                <p>// Current Focus:</p>
-                                <p className="text-[#EAE0D5]">Scalable architectures[cite: 7, 17].</p>
+                                <p>{t('hero.current_focus')}</p>
+                                <p className="text-[#EAE0D5]">{t('hero.focus_detail')}</p>
                             </div>
                         </div>
                     </motion.div>

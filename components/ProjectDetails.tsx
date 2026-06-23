@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { PROJECTS } from '../constants';
 import { ExternalLink, Github, ArrowLeft, Layers, Calendar, User, Terminal, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,6 +18,7 @@ const COFFEE_MODERN = {
 
 const ProjectDetails: React.FC = () => {
     const { id } = useParams();
+    const { t } = useTranslation();
     const project = PROJECTS.find((p) => p.id === id);
 
     useEffect(() => {
@@ -59,7 +61,7 @@ const ProjectDetails: React.FC = () => {
                         style={{ color: COFFEE_MODERN.textMuted }}
                     >
                         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-                        <span>/ Return_To_Index</span>
+                        <span>/ {t('project_details.return')}</span>
                     </Link>
                 </motion.div>
 
@@ -75,7 +77,7 @@ const ProjectDetails: React.FC = () => {
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-2 h-2 bg-[#D4A373] rounded-full animate-pulse" />
                                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8D7B68]">
-                                        Case Study: {project.category}
+                                        {t('project_details.case_study')}: {project.category}
                                     </span>
                                 </div>
 
@@ -93,13 +95,13 @@ const ProjectDetails: React.FC = () => {
                                 <div className="grid grid-cols-2 gap-8">
                                     <div className="space-y-2">
                                         <h4 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#8D7B68]">
-                                            <User size={12} /> Client_ID
+                                            <User size={12} /> {t('project_details.client')}
                                         </h4>
                                         <p className="font-sans font-bold text-lg text-[#EAE0D5]">Portfolio Work</p>
                                     </div>
                                     <div className="space-y-2">
                                         <h4 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#8D7B68]">
-                                            <Calendar size={12} /> Deployment
+                                            <Calendar size={12} /> {t('project_details.deployment')}
                                         </h4>
                                         <p className="font-sans font-bold text-lg text-[#EAE0D5]">2024</p>
                                     </div>
@@ -107,7 +109,7 @@ const ProjectDetails: React.FC = () => {
 
                                 <div className="space-y-3">
                                     <h4 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#8D7B68]">
-                                        <Layers size={12} /> Tech_Stack
+                                        <Layers size={12} /> {t('project_details.tech_stack')}
                                     </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.map(tag => (
@@ -124,15 +126,17 @@ const ProjectDetails: React.FC = () => {
                             </motion.div>
 
                             <motion.div variants={fadeInUp} className="flex flex-col gap-4 pt-2">
-                                <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="group w-full py-4 font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-between px-6 bg-[#D4A373] text-[#0F0B09] hover:bg-white transition-all rounded-sm"
-                                >
-                                    <span>Launch Project</span>
-                                    <ExternalLink size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"/>
-                                </a>
+                                {project.link !== '#' && (
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="group w-full py-4 font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-between px-6 bg-[#D4A373] text-[#0F0B09] hover:bg-white transition-all rounded-sm"
+                                    >
+                                        <span>{t('project_details.launch')}</span>
+                                        <ExternalLink size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"/>
+                                    </a>
+                                )}
 
                                 {project.repoLink && (
                                     <a
@@ -141,7 +145,7 @@ const ProjectDetails: React.FC = () => {
                                         rel="noreferrer"
                                         className="group w-full py-4 font-bold uppercase tracking-[0.2em] text-xs flex items-center justify-between px-6 border border-[#8D7B68]/30 text-[#8D7B68] hover:border-[#D4A373] hover:text-[#D4A373] transition-all rounded-sm"
                                     >
-                                        <span>Source Code</span>
+                                        <span>{t('project_details.source')}</span>
                                         <Github size={16} />
                                     </a>
                                 )}
@@ -167,13 +171,13 @@ const ProjectDetails: React.FC = () => {
                             <div className="flex items-center gap-2 mb-6 text-[#D4A373]">
                                 <Terminal size={20} />
                                 <h3 className="font-mono text-lg uppercase tracking-wider m-0">
-                                    Project_Log
+                                    {t('project_details.project_log')}
                                 </h3>
                             </div>
 
                             <div className="p-6 rounded-sm border bg-[#1A1410]/50 mb-8 font-mono text-sm leading-relaxed text-[#8D7B68]"
                                  style={{ borderColor: COFFEE_MODERN.glassBorder }}>
-                                <span className="text-[#D4A373] block mb-2">// Executive Summary:</span>
+                                <span className="text-[#D4A373] block mb-2">// {t('project_details.executive_summary')}</span>
                                 <p className="text-[#EAE0D5]">
                                     {project.description}
                                 </p>
@@ -181,16 +185,16 @@ const ProjectDetails: React.FC = () => {
 
                             <div className="space-y-6 text-lg font-light leading-relaxed text-[#EAE0D5]">
                                 <p>
-                                    <strong className="text-white">Foco:</strong> Implementação de alta performance e escalabilidade.
+                                    <strong className="text-white">{t('project_details.focus_title')}</strong> {t('project_details.focus_desc')}
                                 </p>
                                 <p>
-                                    O desenvolvimento priorizou a entrega de uma experiência fluida, utilizando padrões de design modernos e uma arquitetura robusta.
+                                    {t('project_details.dev_desc')}
                                 </p>
                             </div>
                         </motion.div>
 
                         <motion.div variants={fadeInUp} className="space-y-4 pt-8 border-t border-[#D4A373]/10">
-                            <h4 className="font-mono text-xs uppercase tracking-widest text-[#8D7B68] mb-4">Visual_Assets</h4>
+                            <h4 className="font-mono text-xs uppercase tracking-widest text-[#8D7B68] mb-4">{t('project_details.visual_assets')}</h4>
                             <div className="grid grid-cols-2 gap-4">
                                 {[1, 2].map((i) => (
                                     <div key={i} className="aspect-video rounded-sm border flex items-center justify-center bg-[#1A1410]"

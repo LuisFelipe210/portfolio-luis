@@ -4,6 +4,7 @@ import React from 'react';
 import { SKILLS } from '../constants';
 import { Code2, Database, TerminalSquare, BrainCircuit, Cpu, Layout, Server, Braces, Settings2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Mesma paleta Industrial dos outros componentes
 const COFFEE_MODERN = {
@@ -21,6 +22,7 @@ const getIcon = (idx: number) => {
 }
 
 const Skills: React.FC = () => {
+    const { t } = useTranslation();
     return (
         <section id="skills" className="py-24 relative overflow-hidden" style={{ backgroundColor: COFFEE_MODERN.bgDark }}>
 
@@ -50,12 +52,12 @@ const Skills: React.FC = () => {
                         >
                             <Settings2 size={16} />
                             <span className="font-mono text-xs uppercase tracking-[0.2em]">
-                                System Architecture
+                                {t('skills_section.subtitle', { defaultValue: 'System Architecture' })}
                             </span>
                         </motion.div>
                         <h2 className="text-4xl md:text-6xl font-sans font-black text-white tracking-tighter leading-none">
-                            TECHNICAL <br />
-                            <span className="text-[#8D7B68]">CAPABILITIES.</span>
+                            {t('skills_section.title', { defaultValue: 'TECHNICAL CAPABILITIES' }).split(' ')[0]} <br />
+                            <span className="text-[#8D7B68]">{t('skills_section.title', { defaultValue: 'TECHNICAL CAPABILITIES.' }).split(' ').slice(1).join(' ')}</span>
                         </h2>
                     </div>
 
@@ -95,7 +97,7 @@ const Skills: React.FC = () => {
                                             MODULE_0{idx + 1}
                                         </span>
                                         <h3 className="text-xl font-sans font-bold tracking-tight text-[#EAE0D5] group-hover:text-white transition-colors">
-                                            {skillGroup.category.split(' ')[0]}
+                                            {t(`skills_section.${skillGroup.category}`, { defaultValue: skillGroup.category }).split(' ')[0]}
                                         </h3>
                                     </div>
                                     <div
