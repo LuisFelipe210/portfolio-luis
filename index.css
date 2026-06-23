@@ -1,6 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-coffee-50: #fdf8f6;
+  --color-coffee-100: #f2e8e5;
+  --color-coffee-200: #eaddd7;
+  --color-coffee-300: #e0cec7;
+  --color-coffee-400: #d2bab0;
+  --color-coffee-500: #a78b71;
+  --color-coffee-600: #8c6b5d;
+  --color-coffee-700: #6f5247;
+  --color-coffee-800: #4e3a33;
+  --color-coffee-900: #3f2e2a;
+
+  --color-rooster-500: #e34234;
+  --color-rooster-600: #c0392b;
+
+  --color-egg-100: #fef3c7;
+  --color-egg-400: #fbbf24;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Merriweather', serif;
+}
 
 /* === SCROLLBAR PERSONALIZADA (O Fio de Café) === */
 ::-webkit-scrollbar {
@@ -52,10 +72,6 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
     :root {

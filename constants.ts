@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
         repoLink: 'https://github.com/LuisFelipe210/Domino-Multiplayer',
         tags: ['Node.js', 'WebSockets', 'Docker'],
         category: ProjectCategory.ACADEMIC,
-        imagePlaceholder: 'https://picsum.photos/id/204/800/600'
+        imagePlaceholder: '/generic_project_cover.png'
     },
     {
         id: 'asset-maintenance',
@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
         repoLink: 'https://github.com/LuisFelipe210/voluntariado',
         tags: ['NestJS', 'React', 'PostgreSQL'],
         category: ProjectCategory.ACADEMIC,
-        imagePlaceholder: 'https://picsum.photos/id/5/800/600'
+        imagePlaceholder: '/generic_project_cover.png'
     },
     {
         id: 'dashboard-ml-previsao',
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
         repoLink: 'https://github.com/LuisFelipe210/dashboard-analise-jogadores-api#dashboard-de-an%C3%A1lise-e-previs%C3%A3o-de-jogadores',
         tags: ['FastAPI', 'React', 'Python', 'Machine Learning', 'Docker'],
         category: ProjectCategory.ACADEMIC,
-        imagePlaceholder: 'https://picsum.photos/id/111/800/600'
+        imagePlaceholder: '/generic_project_cover.png'
     },
     {
         id: 'gerenciador-de-pedidos',
@@ -89,7 +89,7 @@ export const PROJECTS: Project[] = [
         link: '/gerenciador-de-pedidos-readme.html',
         tags: ['React', 'Node.js', 'Prisma', 'MySQL', 'Docker'],
         category: ProjectCategory.PROFESSIONAL,
-        imagePlaceholder: 'https://picsum.photos/id/42/800/600'
+        imagePlaceholder: '/generic_project_cover.png'
     }
 ];
 
