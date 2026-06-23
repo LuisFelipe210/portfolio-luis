@@ -57,7 +57,7 @@ export const PROJECTS: Project[] = [
         title: 'Dominó Multiplayer',
         description: 'Aplicação de jogo em tempo real utilizando WebSockets para comunicação bidirecional de baixa latência.',
         link: '#',
-        repoLink: 'https://github.com/LuisFelipe210',
+        repoLink: 'https://github.com/LuisFelipe210/Domino-Multiplayer',
         tags: ['Node.js', 'WebSockets', 'Docker'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/204/800/600'
