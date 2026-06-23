@@ -86,8 +86,7 @@ export const PROJECTS: Project[] = [
         id: 'gerenciador-de-pedidos',
         title: 'Gerenciador de Pedidos',
         description: 'Plataforma full-stack para venda de produtos físicos e agendamento de serviços técnicos em um fluxo único. Arquitetura robusta com Node.js, Prisma, MySQL, Docker e frontend em React 19. Implementa controle de acessos (RBAC), segurança avançada e automação de jobs operacionais.',
-        link: '#',
-        repoLink: 'https://github.com/LuisFelipe210',
+        link: '/gerenciador-de-pedidos-readme.html',
         tags: ['React', 'Node.js', 'Prisma', 'MySQL', 'Docker'],
         category: ProjectCategory.PROFESSIONAL,
         imagePlaceholder: 'https://picsum.photos/id/42/800/600'

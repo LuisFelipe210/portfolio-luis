@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciador de Pedidos • README Visual</title>
+    <meta
+      name="description"
+      content="Documentação visual completa do projeto Gerenciador de Pedidos em estilo Nothing-inspired."
+    />
+
+    <!-- Nothing Design Fonts: Space Grotesk + Space Mono + Doto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Doto:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --bg-soft: #121212;
+        --surface: #171717;
+        --line: #2a2a2a;
+        --text-display: #ffffff;
+        --text-primary: #e7e7e7;
+        --text-secondary: #9f9f9f;
+        --text-disabled: #6f6f6f;
+        --accent-red: #d71921;
+        --ok: #2da44e;
+        --warn: #d29922;
+        --maxw: 1320px;
+      }
+
+      html[data-theme="light"] {
+        --bg: #f4f3ef;
+        --bg-soft: #ece9e2;
+        --surface: #ffffff;
+        --line: #d4d1c9;
+        --text-display: #101010;
+        --text-primary: #222222;
+        --text-secondary: #5f5f5f;
+        --text-disabled: #8a8a8a;
+        --accent-red: #bf1820;
+        --ok: #1f7a3d;
+        --warn: #9f6b12;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-primary);
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        line-height: 1.5;
+      }
+
+      .app {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        padding: 14px 18px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .brand .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent-red);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: clamp(22px, 4vw, 38px);
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: var(--text-display);
+        font-family: "Doto", "Space Grotesk", sans-serif;
+      }
+
+      .brand p {
+        margin: 0;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text-primary);
+        padding: 8px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      button:hover {
+        border-color: var(--text-secondary);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 290px minmax(0, 1fr);
+        gap: 18px;
+      }
+
+
+      .toc {
+        position: sticky;
+        top: 18px;
+        align-self: start;
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        padding: 14px;
+        max-height: calc(100vh - 36px);
+        overflow: auto;
+      }
+
+      .toc h2 {
+        margin: 0 0 10px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-secondary);
+      }
+
+      .toc a {
+        display: block;
+        text-decoration: none;
+        color: var(--text-primary);
+        padding: 6px 0;
+        font-size: 14px;
+      }
+
+      .toc a:hover {
+        color: var(--accent-red);
+      }
+
+      .content {
+        display: grid;
+        gap: 16px;
+      }
+
+      .lang-tag {
+        margin-bottom: 10px;
+        font-family: "Space Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+
+      section,
+      .hero {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        padding: clamp(16px, 2vw, 30px);
+      }
+
+      .hero h2 {
+        margin: 0 0 10px;
+        font-size: clamp(32px, 6vw, 72px);
+        line-height: 0.95;
+        color: var(--text-display);
+        letter-spacing: 0.01em;
+      }
+
+      .hero .subtitle {
+        margin: 0;
+        font-size: 18px;
+        color: var(--text-primary);
+        max-width: 76ch;
+      }
+
+      .meta {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        padding: 8px 10px;
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+
+      h3 {
+        margin: 0 0 14px;
+        font-size: 30px;
+        color: var(--text-display);
+        line-height: 1.05;
+      }
+
+      h4 {
+        margin: 22px 0 10px;
+        font-size: 20px;
+        color: var(--text-display);
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      ul,
+      ol {
+        margin: 0 0 14px;
+        padding-left: 20px;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      code {
+        font-family: "Space Mono", monospace;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        padding: 1px 6px;
+      }
+
+      pre {
+        margin: 12px 0 16px;
+        padding: 14px;
+        overflow: auto;
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        color: var(--text-primary);
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        padding: 12px;
+      }
+
+      .label {
+        font-family: "Space Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+
+      .ok { color: var(--ok); }
+      .warn { color: var(--warn); }
+      .alert { color: var(--accent-red); }
+
+      .search-input {
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text-primary);
+        padding: 8px 10px;
+        min-width: 220px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+      }
+
+      .search-input::placeholder {
+        color: var(--text-disabled);
+      }
+
+      .search-count {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        padding: 8px 6px;
+      }
+
+      mark.hit {
+        background: var(--accent-red);
+        color: #fff;
+        padding: 0 2px;
+      }
+
+      footer {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        padding: 16px;
+        text-align: center;
+        color: var(--text-secondary);
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 1024px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .toc {
+          position: relative;
+          max-height: none;
+          top: 0;
+        }
+
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+
+      }
+
+      @media print {
+        @page {
+          size: A4 portrait;
+          margin: 14mm;
+        }
+
+        html,
+        body {
+          background: #fff !important;
+          color: #000 !important;
+          font-size: 10pt;
+        }
+
+        .topbar,
+        .toc,
+        .controls {
+          display: none !important;
+        }
+
+        .app {
+          max-width: none;
+          padding: 0;
+        }
+
+        .layout {
+          display: block;
+        }
+
+        .content,
+        .content section,
+        .content .hero {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          border-color: #bbb !important;
+          background: #fff !important;
+        }
+
+        .lang-tag {
+          color: #333 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <h1>GERENCIADOR DE PEDIDOS</h1>
+            <p>README Visual • Nothing Design</p>
+          </div>
+        </div>
+        <div class="controls">
+          <input id="searchInput" class="search-input" type="search" placeholder="Buscar no documento..." />
+          <span id="searchCount" class="search-count">0 resultados</span>
+          <button id="bilingualBtn" type="button">English</button>
+          <button id="printBtn" type="button">Imprimir A4</button>
+          <button id="themeBtn" type="button">Alternar Tema</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <nav class="toc" aria-label="Índice do documento">
+          <h2>Índice</h2>
+          <a href="#sec-1">1. Visão Geral</a>
+          <a href="#sec-2">2. Arquitetura Técnica</a>
+          <a href="#sec-3">3. Estrutura de Pastas</a>
+          <a href="#sec-4">4. Modelo de Dados</a>
+          <a href="#sec-5">5. Segurança</a>
+          <a href="#sec-6">6. Autenticação e Sessão</a>
+          <a href="#sec-7">7. RBAC</a>
+          <a href="#sec-8">8. Catálogo, Carrinho e Checkout</a>
+          <a href="#sec-9">9. Pedidos e Status</a>
+          <a href="#sec-10">10. Dashboard Operacional</a>
+          <a href="#sec-11">11. API</a>
+          <a href="#sec-12">12. Variáveis de Ambiente</a>
+          <a href="#sec-13">13. Como Rodar (sem Docker)</a>
+          <a href="#sec-14">14. Como Rodar (Docker)</a>
+          <a href="#sec-15">15. Testes</a>
+          <a href="#sec-16">16. Jobs automáticos</a>
+          <a href="#sec-17">17. Deploy e Build</a>
+          <a href="#sec-18">18. CI/CD e Governança</a>
+          <a href="#sec-19">19. Troubleshooting</a>
+          <a href="#sec-20">20. Manutenção</a>
+          <a href="#sec-21">21. Comandos úteis</a>
+        </nav>
+
+        <article class="content">
+          <div class="lang-tag">Português (PT-BR)</div>
+          <section class="hero">
+            <h2>DOCUMENTAÇÃO COMPLETA</h2>
+            <p class="subtitle">
+              Plataforma full-stack para venda de produtos físicos e agendamento de serviços técnicos em um fluxo único.
+              Este documento cobre arquitetura, regras de negócio, segurança, APIs, banco, jobs, execução, testes e operação.
+            </p>
+            <div class="meta">
+              <span class="chip">React + Vite</span>
+              <span class="chip">Node + Express + Prisma</span>
+              <span class="chip">MySQL 8</span>
+              <span class="chip">JWT + Refresh Rotativo + CSRF</span>
+              <span class="chip">AES-256-GCM</span>
+            </div>
+          </section>
+
+          <section id="sec-1">
+            <h3>1. Visão Geral</h3>
+            <p>O sistema resolve um cenário híbrido:</p>
+            <ul>
+              <li>Produto físico: catálogo, reserva de estoque, checkout, pedido.</li>
+              <li>Serviço: catálogo, seleção de slot, coleta de informações técnicas, checkout, pedido.</li>
+            </ul>
+            <p>Perfis de acesso:</p>
+            <ul>
+              <li><code>CUSTOMER</code>: compra/agendamento e acompanhamento de pedidos.</li>
+              <li><code>VENDOR</code>: operação do tenant (catálogo, inventário, status de pedidos, KPIs do próprio tenant).</li>
+              <li><code>ADMIN</code>: visão global, gestão de tenants, curadoria da Home, KPIs globais.</li>
+            </ul>
+          </section>
+
+          <section id="sec-2">
+            <h3>2. Arquitetura Técnica</h3>
+            <div class="grid-2">
+              <div class="card">
+                <p class="label">Frontend</p>
+                <p>React 19 + Vite + TypeScript + TanStack Query + React Router.</p>
+              </div>
+              <div class="card">
+                <p class="label">Backend</p>
+                <p>Node.js + Express + TypeScript + Prisma.</p>
+              </div>
+              <div class="card">
+                <p class="label">Banco</p>
+                <p>MySQL 8.</p>
+              </div>
+              <div class="card">
+                <p class="label">Infra local</p>
+                <p>Docker Compose (dev/prod).</p>
+              </div>
+            </div>
+            <p>Segurança e runtime:</p>
+            <ul>
+              <li>Helmet, CORS estrito, rate limits, JWT + refresh token rotativo, CSRF token.</li>
+              <li>Criptografia AES-256-GCM para dados sensíveis de pedido.</li>
+              <li><code>node-cron</code> para limpeza de reservas e reposição de slots.</li>
+            </ul>
+            <pre><code>U[Usuário] -> F[Frontend React] -> B[Backend Express] -> P[Prisma] -> D[(MySQL)]
+B -> J1[cleanupReservations]
+B -> J2[serviceSlotTopup]</code></pre>
+          </section>
+
+          <section id="sec-3">
+            <h3>3. Estrutura de Pastas</h3>
+            <h4>3.1 Raiz</h4>
+            <ul>
+              <li><code>docker-compose.yml</code>: stack de desenvolvimento (db + backend dev + frontend dev).</li>
+              <li><code>docker-compose.prod.yml</code>: stack de produção (db + backend buildado + frontend nginx).</li>
+              <li><code>DOCKER.md</code>: resumo rápido dos comandos Docker.</li>
+              <li><code>.github/workflows/security-ci.yml</code>: pipeline de segurança e qualidade.</li>
+              <li><code>.github/BRANCH_PROTECTION.md</code>: baseline de proteção de branch.</li>
+            </ul>
+
+            <h4>3.2 Backend (/backend)</h4>
+            <ul>
+              <li><code>src/server.ts</code>: bootstrap da API, validações de env, middlewares, rate limits, rotas, health check e start dos jobs.</li>
+              <li><code>src/controllers/*</code>: lógica de negócio por domínio (auth, catálogo, carrinho, checkout, pedidos, tenants, KPI).</li>
+              <li><code>src/routes/*</code>: mapeamento HTTP para controller + auth/authorize/validate.</li>
+              <li><code>src/middlewares/auth.ts</code>: autenticação JWT, auth opcional e autorização por role.</li>
+              <li><code>src/middlewares/validate.ts</code>: validação Zod para body/query/params (422).</li>
+              <li><code>src/middlewares/errorHandler.ts</code>: normalização de erros.</li>
+              <li><code>src/lib/prisma.ts</code>: client Prisma singleton.</li>
+              <li><code>src/lib/passwordPolicy.ts</code>: política de senha forte (backend).</li>
+              <li><code>src/lib/crypto.ts</code>: criptografia/descriptografia JSON com AES-256-GCM.</li>
+              <li><code>src/lib/cartSession.ts</code>: cookie de sessão de carrinho para usuário convidado/logado.</li>
+              <li><code>src/jobs/cleanupReservations.ts</code>: desfaz reservas expiradas por minuto.</li>
+              <li><code>src/jobs/serviceSlotTopup.ts</code>: repõe slots automaticamente (horizonte 21 dias).</li>
+              <li><code>prisma/schema.prisma</code>: modelo de dados completo.</li>
+              <li><code>prisma/migrations/*</code>: histórico de migrações.</li>
+              <li><code>prisma/seed.ts</code> e <code>prisma/seed_add_more.ts</code>: seed base + seed incremental.</li>
+              <li><code>tests/*</code>: testes unitários e integração.</li>
+            </ul>
+
+            <h4>3.3 Frontend (/frontend)</h4>
+            <ul>
+              <li><code>src/main.tsx</code>: providers globais (router/query/auth/toast).</li>
+              <li><code>src/App.tsx</code>: rotas públicas/protegidas e layouts.</li>
+              <li><code>src/context/AuthContext.tsx</code>: estado de sessão, bootstrap por refresh e ações de auth.</li>
+              <li><code>src/lib/api.ts</code>: cliente HTTP com bearer em memória, CSRF, refresh mutex e retry automático pós-refresh.</li>
+              <li><code>src/pages/*</code>: páginas do produto (home, catálogo, checkout, conta, dashboard, auth).</li>
+              <li><code>src/components/*</code>: navbar, shell, modais, skeleton.</li>
+              <li><code>src/hooks/*</code>: hooks de dados.</li>
+              <li><code>src/types/api.ts</code>: contratos TS compartilhados.</li>
+              <li><code>src/index.css</code>: design tokens e utilitários visuais.</li>
+              <li><code>vite.config.ts</code>: proxy <code>/api</code> para backend local.</li>
+              <li><code>nginx.conf</code>: fallback SPA para produção.</li>
+            </ul>
+          </section>
+
+          <section id="sec-4">
+            <h3>4. Modelo de Dados (Prisma)</h3>
+            <p>Entidades principais:</p>
+            <ul>
+              <li><code>User</code>: usuário com role (<code>ADMIN|VENDOR|CUSTOMER</code>), vínculo opcional com tenant, flag <code>mustChangePassword</code>.</li>
+              <li><code>Tenant</code>: parceiro/empresa (loja/assistência).</li>
+              <li><code>Location</code>: pontos físicos do tenant.</li>
+              <li><code>Category</code>: categorias de catálogo com flags de destaque home.</li>
+              <li><code>Item</code>: produto ou serviço com preço, categoria, tenant, custom fields e flags de destaque.</li>
+              <li><code>Inventory</code>: estoque por par (<code>itemId</code>, <code>locationId</code>).</li>
+              <li><code>ServiceSlot</code>: agenda de horários para itens do tipo <code>SERVICE</code>.</li>
+              <li><code>CartReservation</code>: reserva temporária (soft reservation).</li>
+              <li><code>Order</code> e <code>OrderItem</code>: pedido consolidado por tenant e suas linhas.</li>
+              <li><code>MaintenanceIntake</code>: dados técnicos coletados para linhas de serviço.</li>
+              <li><code>RefreshToken</code>: refresh token hasheado por usuário.</li>
+            </ul>
+            <p>Regras estruturais:</p>
+            <ul>
+              <li><code>Inventory</code> possui <code>@@unique([itemId, locationId])</code>.</li>
+              <li><code>Order</code> indexado por <code>tenantId</code>, <code>status</code>, <code>createdAt</code>.</li>
+              <li><code>RefreshToken.token</code> é único e armazenado como hash SHA-256.</li>
+            </ul>
+          </section>
+
+          <section id="sec-5">
+            <h3>5. Segurança</h3>
+            <h4>5.1 Backend</h4>
+            <ul>
+              <li>Validação obrigatória de env críticos no startup.</li>
+              <li>Bloqueio de segredo fraco/chave inválida em produção.</li>
+              <li><code>helmet</code> com frameguard deny, HSTS em produção, referrerPolicy no-referrer e CSP.</li>
+              <li>CORS allowlist por <code>CORS_ORIGINS</code>/<code>FRONTEND_URL</code>.</li>
+              <li>Body size limitado: <code>500kb</code>.</li>
+              <li>Rate limit em camadas: global, auth, refresh, carrinho/reserva e checkout.</li>
+              <li>JWT HS256 curta duração + refresh rotativo.</li>
+              <li>CSRF em cookie + header para operações sensíveis (produção).</li>
+              <li>Origem confiável (<code>Origin/Referer</code>) em refresh/logout/change-password.</li>
+              <li>Revogação de sessões na troca de senha.</li>
+              <li>Criptografia AES-256-GCM para <code>fulfillmentData</code>.</li>
+              <li>Sanitização de dados em respostas de pedido por papel.</li>
+            </ul>
+
+            <h4>5.2 Frontend</h4>
+            <ul>
+              <li>Access token em memória (não persiste em localStorage).</li>
+              <li>Refresh mutex para evitar corrida de múltiplos 401 simultâneos.</li>
+              <li>CSRF token lido de cookie e enviado em mutações.</li>
+              <li>Sanitização de inputs com DOMPurify em formulários críticos.</li>
+              <li>CSP em <code>frontend/index.html</code>.</li>
+            </ul>
+
+            <h4>5.3 Pipeline de segurança</h4>
+            <ul>
+              <li>Semgrep (OWASP Top Ten + Secrets).</li>
+              <li>Gitleaks.</li>
+              <li><code>npm audit --omit=dev --audit-level=high</code> backend/frontend.</li>
+              <li>Testes + build backend/frontend.</li>
+            </ul>
+          </section>
+
+          <section id="sec-6">
+            <h3>6. Autenticação e Sessão</h3>
+            <h4>6.1 Login/Register</h4>
+            <ol>
+              <li>Frontend chama <code>/api/auth/login</code> ou <code>/api/auth/register</code>.</li>
+              <li>Backend valida payload (Zod + política de senha).</li>
+              <li>Gera <code>token</code> JWT (access) e refresh assinado salvo como hash em <code>refresh_tokens</code>.</li>
+              <li>Define cookies <code>rt</code> (httpOnly) e <code>csrf_token</code> (não httpOnly).</li>
+            </ol>
+            <h4>6.2 Refresh</h4>
+            <ul>
+              <li>Frontend tenta automaticamente ao receber 401 (exceto bypass de auth).</li>
+              <li>Backend valida origem + CSRF em produção, valida refresh JWT, confere hash no banco, deleta token antigo e emite novo par.</li>
+            </ul>
+            <h4>6.3 Logout</h4>
+            <ul>
+              <li>Exige access token + origem confiável + CSRF em produção.</li>
+              <li>Revoga refresh token no banco e limpa cookies.</li>
+            </ul>
+          </section>
+
+          <section id="sec-7">
+            <h3>7. RBAC (controle por perfil)</h3>
+            <ul>
+              <li><strong>CUSTOMER</strong>: reserva itens/slots, finaliza checkout, lista/vê próprios pedidos, cancela apenas <code>PENDING</code>.</li>
+              <li><strong>VENDOR</strong>: CRUD itens do próprio tenant, gestão de inventário/slots, vê/atualiza pedidos do próprio tenant, não compra como cliente.</li>
+              <li><strong>ADMIN</strong>: controle global de tenants/categorias/curadoria home, pode atuar em qualquer tenant.</li>
+            </ul>
+          </section>
+
+          <section id="sec-8">
+            <h3>8. Catálogo, Carrinho e Checkout</h3>
+            <h4>8.1 Catálogo (<code>/api/items</code>)</h4>
+            <ul>
+              <li>Filtros: <code>type</code>, <code>categoryId</code>, <code>tenantId</code>, <code>search</code>, <code>locationId</code>, geolocalização (<code>lat/lng/radius</code>), <code>featuredHome</code>, paginação.</li>
+              <li>Público/customer recebe dados públicos.</li>
+              <li>Vendor/admin recebem também dados operacionais.</li>
+            </ul>
+
+            <h4>8.2 Carrinho (soft reservation)</h4>
+            <ul>
+              <li>Reserva: <code>POST /api/cart/reserve</code>.</li>
+              <li>Sessão por cookie <code>cart_session</code> (uuid).</li>
+              <li>Produto físico: decrementa <code>availableQty</code>, incrementa <code>reservedQty</code>.</li>
+              <li>Serviço: slot <code>AVAILABLE</code> para <code>RESERVED</code>.</li>
+              <li>TTL da reserva: 15 minutos.</li>
+              <li>Limites anti-abuso por request/sessão e totais ativos.</li>
+            </ul>
+
+            <h4>8.3 Limpeza automática</h4>
+            <p>Job por minuto remove reservas expiradas e devolve estoque/slot.</p>
+
+            <h4>8.4 Checkout</h4>
+            <ul>
+              <li>Requer <code>CUSTOMER</code> autenticado.</li>
+              <li>Faz claim otimista das reservas no início da transação.</li>
+              <li>Separa pedidos por tenant (um checkout pode gerar múltiplos orders).</li>
+              <li>Consolida: físico baixa <code>reservedQty</code>, serviço <code>RESERVED</code> para <code>BOOKED</code>.</li>
+              <li>Persiste <code>fulfillmentData</code> criptografado.</li>
+              <li>Gera <code>maintenanceIntake</code> quando aplicável.</li>
+            </ul>
+          </section>
+
+          <section id="sec-9">
+            <h3>9. Pedidos e Status</h3>
+            <p>Status possíveis:</p>
+            <pre><code>PENDING -> APPROVED -> IN_PROGRESS -> COMPLETED</code></pre>
+            <p>Regras:</p>
+            <ul>
+              <li>Cancelamento permitido conforme matriz de transição.</li>
+              <li>Ao cancelar, devolve estoque físico e libera slots (<code>BOOKED/RESERVED</code> para <code>AVAILABLE</code>).</li>
+              <li>Fulfillment descriptografado e reduzido por role.</li>
+              <li>Email do usuário exposto apenas para admin.</li>
+            </ul>
+          </section>
+
+          <section id="sec-10">
+            <h3>10. Dashboard Operacional</h3>
+            <p>Fonte: <code>/api/vendor/kpis</code></p>
+            <ul>
+              <li>KPIs: GMV, pedidos concluídos, total de itens, total de tenants (admin global).</li>
+              <li>Pedidos recentes para kanban e tabela.</li>
+              <li>Série temporal de GMV mensal (últimos 6 meses).</li>
+              <li>Curadoria da Home (admin): categorias/serviços destacados + ordem.</li>
+            </ul>
+          </section>
+
+          <section id="sec-11">
+            <h3>11. API (rotas)</h3>
+            <h4>11.1 Auth</h4>
+            <ul>
+              <li><code>POST /api/auth/register</code></li>
+              <li><code>POST /api/auth/login</code></li>
+              <li><code>POST /api/auth/refresh</code></li>
+              <li><code>POST /api/auth/logout</code> (auth)</li>
+              <li><code>GET /api/auth/me</code> (auth)</li>
+              <li><code>PATCH /api/auth/update-profile</code> (auth)</li>
+              <li><code>POST /api/auth/change-password</code> (auth)</li>
+            </ul>
+
+            <h4>11.2 Catálogo e inventário</h4>
+            <ul>
+              <li><code>GET /api/items</code></li>
+              <li><code>GET /api/items/:id</code></li>
+              <li><code>GET /api/items/locations</code></li>
+              <li><code>GET /api/items/categories</code></li>
+              <li><code>POST /api/items</code> (VENDOR/ADMIN)</li>
+              <li><code>PATCH /api/items/:id</code> (VENDOR/ADMIN)</li>
+              <li><code>DELETE /api/items/:id</code> (VENDOR/ADMIN)</li>
+              <li><code>POST /api/items/:itemId/inventory</code> (VENDOR/ADMIN)</li>
+              <li><code>POST /api/items/:itemId/slots</code> (VENDOR/ADMIN)</li>
+            </ul>
+
+            <h4>11.3 Categorias</h4>
+            <ul>
+              <li><code>GET /api/categories</code></li>
+              <li><code>POST /api/categories</code> (ADMIN)</li>
+              <li><code>PATCH /api/categories/:id</code> (ADMIN)</li>
+            </ul>
+
+            <h4>11.4 Carrinho e checkout</h4>
+            <ul>
+              <li><code>POST /api/cart/reserve</code></li>
+              <li><code>GET /api/cart</code></li>
+              <li><code>DELETE /api/cart/:id</code></li>
+              <li><code>POST /api/checkout</code> (auth)</li>
+            </ul>
+
+            <h4>11.5 Pedidos</h4>
+            <ul>
+              <li><code>GET /api/orders</code> (auth)</li>
+              <li><code>GET /api/orders/:id</code> (auth)</li>
+              <li><code>PATCH /api/orders/:id/status</code> (CUSTOMER/VENDOR/ADMIN)</li>
+            </ul>
+
+            <h4>11.6 Tenants e KPIs</h4>
+            <ul>
+              <li><code>GET /api/tenants</code> (ADMIN)</li>
+              <li><code>POST /api/tenants</code> (ADMIN)</li>
+              <li><code>GET /api/tenants/stats</code> (ADMIN)</li>
+              <li><code>PATCH /api/tenants/:id/location</code> (ADMIN ou dono vendor)</li>
+              <li><code>GET /api/vendor/kpis</code> (ADMIN/VENDOR)</li>
+            </ul>
+
+            <h4>11.7 Infra</h4>
+            <ul>
+              <li><code>GET /health</code></li>
+            </ul>
+          </section>
+
+          <section id="sec-12">
+            <h3>12. Variáveis de Ambiente</h3>
+            <h4>12.1 Backend (<code>backend/.env</code>)</h4>
+            <pre><code>DB_HOST=localhost
+DB_USER=root
+DB_PASS=your_password
+DB_NAME=gerenciador_pedidos
+DB_PORT=3306
+DATABASE_URL="mysql://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+JWT_SECRET=change-me-to-a-secure-random-string
+JWT_REFRESH_SECRET=change-me-to-a-secure-random-string-too
+ORDER_DATA_ENC_KEY=replace-with-32-byte-base64-key
+FRONTEND_URL=http://localhost:5173
+CORS_ORIGINS=http://localhost:5173
+TRUST_PROXY=false
+CART_COOKIE_SAMESITE=lax
+PORT=3001</code></pre>
+            <p>Recomendação para gerar <code>ORDER_DATA_ENC_KEY</code>:</p>
+            <pre><code>node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"</code></pre>
+            <h4>12.2 Frontend</h4>
+            <ul>
+              <li><code>VITE_API_BASE_URL</code> (default local: <code>http://localhost:3001</code>).</li>
+            </ul>
+          </section>
+
+          <section id="sec-13">
+            <h3>13. Como Rodar (sem Docker)</h3>
+            <p>Pré-requisitos: Node 22+ e MySQL 8+.</p>
+            <h4>13.1 Backend</h4>
+            <pre><code>cd backend
+npm ci
+cp .env.example .env
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+npm run dev</code></pre>
+            <p>Backend: <code>http://localhost:3001</code></p>
+            <h4>13.2 Frontend</h4>
+            <pre><code>cd frontend
+npm ci
+npm run dev</code></pre>
+            <p>Frontend: <code>http://localhost:5173</code></p>
+          </section>
+
+          <section id="sec-14">
+            <h3>14. Como Rodar (Docker)</h3>
+            <h4>14.1 Desenvolvimento</h4>
+            <pre><code>docker compose up --build</code></pre>
+            <ul>
+              <li>Frontend: <code>http://localhost:5173</code></li>
+              <li>Backend: <code>http://localhost:3001</code></li>
+              <li>Health: <code>http://localhost:3001/health</code></li>
+              <li>MySQL: <code>localhost:3306</code></li>
+            </ul>
+            <h4>14.2 Produção</h4>
+            <pre><code>docker compose -f docker-compose.prod.yml up --build -d</code></pre>
+          </section>
+
+          <section id="sec-15">
+            <h3>15. Testes</h3>
+            <h4>15.1 Backend unitário</h4>
+            <pre><code>cd backend
+npm test</code></pre>
+            <p>Cobertura atual por domínio:</p>
+            <ul>
+              <li>Auth controller (inclui refresh com origem/CSRF em produção).</li>
+              <li>Cart controller (reserva/remoção, regras de tipo).</li>
+              <li>Checkout controller (frete server-side, concorrência de claim).</li>
+              <li>Items controller (escopo por tenant e proteção de update/delete).</li>
+              <li>Orders controller (cancelamento com rollback de recursos).</li>
+              <li>Middleware <code>validate</code>.</li>
+            </ul>
+            <h4>15.2 Backend integração</h4>
+            <p>Requer <code>INTEGRATION_DB_URL</code> para banco de teste.</p>
+            <pre><code>cd backend
+INTEGRATION_DB_URL="mysql://..." npm run test:integration</code></pre>
+            <h4>15.3 Frontend</h4>
+            <pre><code>cd frontend
+npm test</code></pre>
+            <p>Há testes no cliente API cobrindo headers, bearer, CSRF, erros HTTP e <code>getSessionId</code>.</p>
+          </section>
+
+          <section id="sec-16">
+            <h3>16. Jobs automáticos</h3>
+            <h4>16.1 <code>cleanupReservations</code></h4>
+            <ul>
+              <li>Frequência: <code>* * * * *</code> (1 min).</li>
+              <li>Função: identificar reservas expiradas e desfazer efeitos em estoque/slot.</li>
+            </ul>
+            <h4>16.2 <code>serviceSlotTopup</code></h4>
+            <ul>
+              <li>Frequência: horária.</li>
+              <li>Função: garantir mínimo de slots disponíveis por serviço, inferindo template histórico e preenchendo horizonte de 21 dias.</li>
+            </ul>
+          </section>
+
+          <section id="sec-17">
+            <h3>17. Deploy e Build</h3>
+            <h4>Backend</h4>
+            <ul>
+              <li>Build TS: <code>npm run build</code>.</li>
+              <li>Runtime produção: <code>node dist/src/server.js</code>.</li>
+            </ul>
+            <h4>Frontend</h4>
+            <ul>
+              <li>Build Vite: <code>npm run build</code>.</li>
+              <li>Produção em Docker: Nginx com fallback SPA (<code>try_files ... /index.html</code>).</li>
+            </ul>
+          </section>
+
+          <section id="sec-18">
+            <h3>18. CI/CD e Governança</h3>
+            <p>Workflow <code>.github/workflows/security-ci.yml</code> executa:</p>
+            <ul>
+              <li>Semgrep SAST</li>
+              <li>Secret Scan (Gitleaks)</li>
+              <li>Backend Security Gate (audit + tests + build)</li>
+              <li>Frontend Security Gate (audit + tests + build)</li>
+            </ul>
+            <p>Branch protection recomendado (em <code>.github/BRANCH_PROTECTION.md</code>):</p>
+            <ul>
+              <li>PR obrigatório</li>
+              <li>Aprovações</li>
+              <li>Conversas resolvidas</li>
+              <li>Branch atualizada</li>
+              <li>Sem bypass</li>
+            </ul>
+          </section>
+
+          <section id="sec-19">
+            <h3>19. Troubleshooting</h3>
+            <h4>19.1 Erro de chave de criptografia</h4>
+            <ul>
+              <li><span class="alert">Mensagem:</span> <code>ORDER_DATA_ENC_KEY inválida</code>.</li>
+              <li>Causa: valor não-base64 de 32 bytes.</li>
+              <li>Correção: gerar nova chave e atualizar env.</li>
+            </ul>
+
+            <h4>19.2 401 contínuo no frontend</h4>
+            <ul>
+              <li>Verificar <code>JWT_SECRET</code>, <code>JWT_REFRESH_SECRET</code>, cookies e origem.</li>
+              <li>Conferir se domínio/porta do frontend está em <code>CORS_ORIGINS</code>.</li>
+            </ul>
+
+            <h4>19.3 403 em refresh/logout/change-password (produção)</h4>
+            <ul>
+              <li>Causa comum: origem não permitida ou CSRF header ausente/incorreto.</li>
+              <li>Revisar <code>Origin/Referer</code> e <code>X-CSRF-Token</code>.</li>
+            </ul>
+
+            <h4>19.4 Itens sem aparecer no catálogo</h4>
+            <ul>
+              <li>Verificar filtros (type/category/tenant/location).</li>
+              <li>Conferir estoque (<code>availableQty &gt; 0</code>) e slots <code>AVAILABLE</code> futuros.</li>
+            </ul>
+
+            <h4>19.5 Falha ao finalizar checkout</h4>
+            <ul>
+              <li>Pode ser disputa de concorrência (carrinho alterado durante claim).</li>
+              <li>Atualize carrinho e tente novamente.</li>
+            </ul>
+
+            <h4>19.6 Vendor sem acesso ao item/pedido</h4>
+            <ul>
+              <li>Escopo multi-tenant: vendor só acessa recursos do próprio <code>tenantId</code>.</li>
+            </ul>
+          </section>
+
+          <section id="sec-20">
+            <h3>20. Observações importantes de manutenção</h3>
+            <ul>
+              <li><code>frontend/README.md</code> atual é template padrão Vite e não descreve o produto.</li>
+              <li>A política de senha no frontend (regex local) está mais permissiva que a política forte do backend; o backend prevalece.</li>
+              <li>Em produção, preferir <code>prisma migrate deploy</code> (já aplicado no compose de produção).</li>
+            </ul>
+          </section>
+
+          <section id="sec-21">
+            <h3>21. Comandos úteis (resumo)</h3>
+            <pre><code># Backend
+cd backend
+npm run dev
+npm run build
+npm test
+npm run test:integration
+npm run db:migrate
+npm run db:seed
+
+# Frontend
+cd frontend
+npm run dev
+npm run build
+npm run test
+npm run lint
+
+# Docker
+docker compose up --build
+docker compose -f docker-compose.prod.yml up --build -d</code></pre>
+          </section>
+
+          <footer>
+            README visual gerado a partir do README técnico principal • versão estática HTML/CSS
+          </footer>
+        </article>
+      </div>
+    </main>
+
+    <script>
+      const ptContent = document.querySelector('article.content');
+      const themeBtn = document.getElementById('themeBtn');
+      const bilingualBtn = document.getElementById('bilingualBtn');
+      const printBtn = document.getElementById('printBtn');
+      const searchInput = document.getElementById('searchInput');
+      const searchCount = document.getElementById('searchCount');
+
+      themeBtn?.addEventListener('click', () => {
+        const html = document.documentElement;
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+      });
+
+      printBtn?.addEventListener('click', () => window.print());
+      bilingualBtn?.addEventListener('click', () => {
+        window.location.href = './README-visual-en.html';
+      });
+
+      function clearHighlights(root) {
+        const marks = root.querySelectorAll('mark.hit');
+        for (const mark of marks) {
+          const textNode = document.createTextNode(mark.textContent || '');
+          mark.replaceWith(textNode);
+        }
+      }
+
+      function highlightIn(root, query) {
+        if (!query) return 0;
+        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const rx = new RegExp(escaped, 'gi');
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) {
+          const n = walker.currentNode;
+          const p = n.parentElement;
+          if (!p) continue;
+          const tag = p.tagName.toLowerCase();
+          if (tag === 'code' || tag === 'pre' || tag === 'script' || tag === 'style') continue;
+          if (n.nodeValue && rx.test(n.nodeValue)) nodes.push(n);
+          rx.lastIndex = 0;
+        }
+
+        let total = 0;
+        for (const node of nodes) {
+          const text = node.nodeValue || '';
+          const frag = document.createDocumentFragment();
+          let last = 0;
+          text.replace(rx, (match, index) => {
+            frag.appendChild(document.createTextNode(text.slice(last, index)));
+            const mark = document.createElement('mark');
+            mark.className = 'hit';
+            mark.textContent = match;
+            frag.appendChild(mark);
+            last = index + match.length;
+            total += 1;
+            return match;
+          });
+          frag.appendChild(document.createTextNode(text.slice(last)));
+          node.replaceWith(frag);
+        }
+        return total;
+      }
+
+      searchInput?.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        clearHighlights(ptContent);
+        let total = highlightIn(ptContent, query);
+        searchCount.textContent = query ? `${total} resultados` : '0 resultados';
+      });
+    </script>
+  </body>
+</html>
