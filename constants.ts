@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
         title: 'Gestão de Ativos',
         description: 'Sistema Fullstack para controle de manutenção preventiva de equipamentos. Dashboard administrativo e relatórios.',
         link: '#',
-        repoLink: 'https://github.com/LuisFelipe210',
+        repoLink: 'https://github.com/LuisFelipe210/voluntariado',
         tags: ['NestJS', 'React', 'PostgreSQL'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/5/800/600'
