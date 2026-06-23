@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
         title: 'Dashboard de Análise e Previsão de Jogadores',
         description: 'Solução completa de Machine Learning integrando backend em FastAPI e frontend em React + Plotly. Permite upload de planilhas e visualizações interativas das previsões de desempenho.',
         link: '#',
-        repoLink: 'https://github.com/LuisFelipe210',
+        repoLink: 'https://github.com/LuisFelipe210/dashboard-analise-jogadores-api#dashboard-de-an%C3%A1lise-e-previs%C3%A3o-de-jogadores',
         tags: ['FastAPI', 'React', 'Python', 'Machine Learning', 'Docker'],
         category: ProjectCategory.ACADEMIC,
         imagePlaceholder: 'https://picsum.photos/id/111/800/600'
